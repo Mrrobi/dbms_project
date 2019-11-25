@@ -10,6 +10,15 @@ class User_model extends CI_Model {
         parent::__construct();
         $this->load->database();
     }
+
+
+
+    public function paid(){
+        $this->db->set('ischeck','1');
+        $this->db->where('user_name',$this->session->userdata('name'));
+        $this->db->where('ischeck','0');
+        $this->db->update('cart');
+    }
     
     public function registration($data){
 
@@ -64,10 +73,52 @@ class User_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('cart');
         $this->db->where('user_name',$this->session->userdata('name'));
+        $this->db->where('ischeck','0');
         $query = $this->db->get();
 
         return $query->result();
 
+    }
+
+
+    public function checkadd($total){
+
+        $this->db->set('user_name',$this->session->userdata('name'));
+        $this->db->set('total_balance',$total);
+        $this->db->set('ispaid','1');
+        date_default_timezone_set("America/New_York");
+        $this->db->set('date',date("Y-m-d h:i:sa"));
+        $this->db->insert('checkout');
+    }
+
+    public function getCheckId(){
+
+        $this->db->select('*');
+        $this->db->from('checkout');
+        $this->db->where('user_name',$this->session->userdata('name'));
+        $this->db->order_by('date','desc');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getHistory(){
+        $this->db->select('*');
+        $this->db->from('history');
+        $this->db->where('User_name',$this->session->userdata('name'));
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function addHistory($id){
+        $this->db->set('Checkout_id',$id);
+        $this->db->set('User_name',$this->session->userdata('name'));
+        $ses = $this->session->userdata('tarndata');
+        $this->db->set('total_balance',$ses['amount']);
+        date_default_timezone_set("America/New_York");
+        $this->db->set('time',date("Y-m-d h:i:sa"));
+        
+        $this->db->insert('history');
     }
 
     public function getproduct($str){
