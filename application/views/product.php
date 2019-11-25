@@ -45,7 +45,9 @@
                     <div class="product-btns">
                         <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
                         <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                        <button class="primary-btn add-to-cart" onclick="location.href='<?php echo base_url()?>cart/<?php echo $pagename?>/<?php echo $p->ID ?>'"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                        <?php if($this->session->userdata('role')=='0') { ?>
+                            <button class="primary-btn add-to-cart" onclick="location.href='<?php echo base_url()?>cart/<?php echo $pagename?>/<?php echo $p->ID ?>'"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

@@ -86,8 +86,8 @@ class User_model extends CI_Model {
         $this->db->set('user_name',$this->session->userdata('name'));
         $this->db->set('total_balance',$total);
         $this->db->set('ispaid','1');
-        date_default_timezone_set("America/New_York");
-        $this->db->set('date',date("Y-m-d h:i:sa"));
+        $ses = $this->session->userdata('tarndata');
+        $this->db->set('date',$ses['time']);
         $this->db->insert('checkout');
     }
 
@@ -115,8 +115,7 @@ class User_model extends CI_Model {
         $this->db->set('User_name',$this->session->userdata('name'));
         $ses = $this->session->userdata('tarndata');
         $this->db->set('total_balance',$ses['amount']);
-        date_default_timezone_set("America/New_York");
-        $this->db->set('time',date("Y-m-d h:i:sa"));
+        $this->db->set('time',$ses['time']);
         
         $this->db->insert('history');
     }

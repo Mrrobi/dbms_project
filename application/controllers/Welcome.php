@@ -1081,8 +1081,7 @@ class Welcome extends CI_Controller {
 			$session = array(
 				'tran_id' => $post_data['tran_id'],
 				'amount' => $post_data['total_amount'],
-				'currency' => $post_data['currency'],
-				'time' => $post_data['tran_date']
+				'currency' => $post_data['currency']
 			);
 			$this->session->set_userdata('tarndata', $session);
 
@@ -1119,6 +1118,14 @@ class Welcome extends CI_Controller {
 					//echo "Processing";
 					//echo "<pre>";
 					//print_r($_POST);exit;
+
+					$session = array(
+						'tran_id' => $_POST['tran_id'],
+						'amount' => $_POST['amount'],
+						'currency' => $_POST['currency'],
+						'time' => $_POST['tran_date']
+					);
+					$this->session->set_userdata('tarndata', $session);
 					redirect(base_url()."checkadd/".$_POST['amount'],"refresh");
 				}
 				else

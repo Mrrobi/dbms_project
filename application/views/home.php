@@ -15,9 +15,9 @@
 	<!-- HOME -->
 	<div id="home">
 		<!-- container -->
-		<div class="container">
+		<div class='container'>
 			<!-- home wrap -->
-			<div class="home-wrap">
+			<div class="">
 				<!-- home slick -->
 				<div id="home-slick">
 					<!-- banner -->
