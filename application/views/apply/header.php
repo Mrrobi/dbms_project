@@ -39,9 +39,9 @@
 		<link rel="stylesheet" href="<?php echo $baseurl; ?>dash/vendor/codemirror/theme/monokai.css" />
 		<!-- Specific Page Vendor CSS -->		
 		<link rel="stylesheet" href="<?php echo $baseurl; ?>dash/vendor/bootstrap-fileupload/bootstrap-fileupload.min.css" />
-		<link rel="stylesheet" href="vendor/select2/css/select2.css" />		
-		<link rel="stylesheet" href="vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />		
-		<link rel="stylesheet" href="vendor/datatables/media/css/dataTables.bootstrap4.css" />
+		<link rel="stylesheet" href="<?php echo $baseurl; ?>dash/vendor/select2/css/select2.css" />		
+		<link rel="stylesheet" href="<?php echo $baseurl; ?>dash/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />		
+		<link rel="stylesheet" href="<?php echo $baseurl; ?>dash/vendor/datatables/media/css/dataTables.bootstrap4.css" />
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="<?php echo $baseurl; ?>dash/css/theme.css" />
 
@@ -69,8 +69,6 @@
 					<div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">						<i class="fas fa-bars" aria-label="Toggle sidebar"></i>					</div>
 				</div>
 				<?php $this->session->set_userdata('prev',$_SERVER['REQUEST_URI']); ?>
-				<!-- start: search & user box -->
-				<?php echo $this->session->userdata('prev') ?>
 				<div class="header-right">
 				<span class="separator"></span>
 				<div id="userbox" class="userbox">

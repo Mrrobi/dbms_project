@@ -219,6 +219,14 @@ class Welcome extends CI_Controller {
 	}
 
 
+	//CheckOut pay 
+
+	public function checkPay(){
+
+		
+
+	}
+
 
 
 
