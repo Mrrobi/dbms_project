@@ -118,7 +118,7 @@
 							</div>
 							<?php if($this->session->userdata("logged_in")==true) { ?>
 							<?php echo $this->session->userdata("name");?>
-							<a href="<?php echo $baseurl ?>welcome\ses_clear" class="text-uppercase">Logout</a>
+							
 							<?php } ?>
 							<?php if($this->session->userdata("logged_in")!=true) { ?>
 							<a href="<?php echo $baseurl ?>logSign" class="text-uppercase">Signin/Signup</a>
@@ -126,6 +126,7 @@
 							<ul class="custom-menu">
 								<?php if($this->session->userdata('role') == '1'){ ?>
 									<li><a href="<?php echo $baseurl ?>ad"><i class="fa fa-user-o"></i> Admin Dashboard</a></li>
+									<li><a href="<?php echo $baseurl ?>welcome\ses_clear" class="text-uppercase"><i class='fas fa-sign-out-alt'></i> Logout</a></li>
 								<?php }else{ ?>
 
 								<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
