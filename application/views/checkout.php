@@ -126,7 +126,7 @@
 								</tfoot>
 							</table>
 							<div class="pull-right">
-								<button class="primary-btn">Place Order</button>
+								<button class="primary-btn" onclick="location.href='<?php echo $baseurl?>checkout'">Place Order</button>
 							</div>
 						</div>
 
