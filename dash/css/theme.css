@@ -14644,21 +14644,6 @@ ul.simple-post-list li:last-child {
 	z-index: 1;
 }
 
-.simple-todo-list li.unfinished {
-	color: #A7A7A7;
-}
-
-.simple-todo-list li.unfinished:before {
-	position: absolute;
-	top: -1px;
-	left: 0;
-	font-family: 'Font Awesome 5 Free';
-	font-weight: 900;
-	content: "\f00d";
-	z-index: 1;
-}
-
-
 /* Widget - Social Icons */
 .social-icons-list {
 	display: block;

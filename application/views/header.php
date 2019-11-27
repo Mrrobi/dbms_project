@@ -130,7 +130,7 @@
 								<?php }else{ ?>
 
 								<li><a href="<?php echo base_url(). "history" ?>"><i class="fas fa-history"></i></i> My History</a></li>
-								<!-- <li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li> -->
+								<li><a href="<?php echo $baseurl ?>welcome\ses_clear" class="text-uppercase"><i class='fas fa-sign-out-alt'></i> Logout</a></li>
 								<!-- <li><a href="#"><i class="fa fa-exchange"></i> Compare</a></li> -->
 								<!-- <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li> -->
 								<!-- <li><a href="#"><i class="fa fa-unlock-alt"></i> Login</a></li> -->

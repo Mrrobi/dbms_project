@@ -17,16 +17,18 @@ Theme Version: 	2.2.0
 
 			return [
 				'<table class="table mb-0">',
-				'<?php foreach($products as $p) { ?>',
 					'<tr class="b-top-0">',
 						'<td><label class="mb-0">Rendering engine:</label></td>',
-						'<td><img class="img-thumbnail" src="<?php echo $baseurl ?>/uploads/<?php echo $pagename?>/<?php echo $p->path ?>" alt="">  </td>',
+						'<td>' + data[1]+ ' ' + data[4] + '</td>',
+					'</tr>',
+					'<tr>',
+						'<td><label class="mb-0">Link to source:</label></td>',
+						'<td>Could provide a link here</td>',
 					'</tr>',
 					'<tr>',
 						'<td><label class="mb-0">Extra info:</label></td>',
-						'<td><?php echo $p->details ?></td>',
+						'<td>And any further details here (images etc)</td>',
 					'</tr>',
-					'<?php } ?>',
 				'</table>'
 			].join('');
 		};

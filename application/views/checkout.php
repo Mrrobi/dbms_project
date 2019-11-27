@@ -71,7 +71,7 @@
 								</tfoot>
 							</table>
 							<div class="pull-right">
-								<a class="primary-btn" onclick="location.href='<?php echo $baseurl?>requestssl/<?php echo $count;?>'">Place Order</a>
+								<a class="primary-btn" onclick="location.href='<?php echo $baseurl?>requestssl/<?php echo $count;?>/check'">Place Order</a>
 							</div>
 						</div>
 

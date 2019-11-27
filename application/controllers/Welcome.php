@@ -71,7 +71,7 @@ class Welcome extends CI_Controller {
 		for ($i = 0; $i < 7; $i++) {
 			$randomString .= $characters[rand(0, $charactersLength - 1)];
 		}
-        echo $randomString;
+        //echo $randomString;
 		$data = array(
 			'user_name'=>  $randomString,
 			'name'=> $this->input->POST('name'),
@@ -108,10 +108,11 @@ class Welcome extends CI_Controller {
 						'name'  => $user->user_name,
 						'email'     => $user->email,
 						'logged_in' => TRUE,
-						'role' => $user->role
+						'role' => $user->role,
+						'build_table' => ''
 					);
-	 
-	 				$this->session->set_userdata($newdata);
+					 $this->session->set_userdata($newdata);
+					 
 					if($user->role == '1'){
 						redirect(base_url() . 'ad');
 					}else{
@@ -220,9 +221,11 @@ class Welcome extends CI_Controller {
 
 	//checkout Adding data
 
-	public function checkadd($total){
+	public function checkadd($total,$key){
+
+		
 		$this->User_model->checkadd($total);
-		$this->User_model->paid();
+		$this->User_model->paid($key);
 		$check_id = $this->User_model->getCheckId();
 		$id;
 		foreach($check_id as $i) $id = $i->Checkout_id;
@@ -244,7 +247,7 @@ class Welcome extends CI_Controller {
 
 
 	public function history(){
-		$this->User_model->paid();
+		//$this->User_model->paid();
 		$data['baseurl'] = $this->config->item('base_url');
 		$data['cart'] = $this->User_model->getCart();
 		$data['pagename'] = "User History";
@@ -254,6 +257,88 @@ class Welcome extends CI_Controller {
 		$this->load->view('user/history',$data);
 
 	}
+
+
+
+	//Pc builder page
+
+	public function pcbuilder(){
+
+		if($this->session->userdata('build_table')!=''){
+			$data['baseurl'] = $this->config->item('base_url');
+			$data['cart'] = $this->User_model->getCart();
+			$data['pagename'] = "Build PC";
+			$data['header'] = $this->load->view('pc_builder/header', $data, TRUE);
+			$data['footer'] = $this->load->view('pc_builder/footer', $data, TRUE);
+
+			$data['build'] = $this->User_model->getTable();
+			$temp = $this->User_model->getTable();
+
+			foreach($temp as $t){
+
+				$data['cpu'] = $this->User_model->getproductsingle('cpu',$t->cpu);
+				$data['gpu'] = $this->User_model->getproductsingle('gpu',$t->gpu);
+				$data['ram'] = $this->User_model->getproductsingle('ram',$t->ram);
+				$data['psu'] = $this->User_model->getproductsingle('psu',$t->psu);
+				$data['ssd'] = $this->User_model->getproductsingle('ssd',$t->ssd);
+				$data['hdd'] = $this->User_model->getproductsingle('hdd',$t->hdd);
+				$data['motherboard'] = $this->User_model->getproductsingle('motherboard',$t->motherboard);
+				$data['casing'] = $this->User_model->getproductsingle('casing',$t->casing);
+
+			}
+
+			$this->load->view('pc_builder/builder',$data);
+		}else{
+			redirect(base_url()."pc_build","refresh");
+		}
+
+	}
+
+
+	//Pc Builder intiating***---****
+	public function pc_built(){
+		$session = $this->session->userdata('logged_in');
+	    
+	    if($session)
+			{
+				If($this->session->userdata('build_table')==''){
+				$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+				$charactersLength = strlen($characters);
+				$randomString = 'Table_';
+				for ($i = 0; $i < 7; $i++) {
+					$randomString .= $characters[rand(0, $charactersLength - 1)];
+				}
+				$this->session->set_userdata('build_table',$randomString);
+				$this->User_model->createTable();
+				redirect(base_url()."pcbuilder","refresh");
+				}else{
+					redirect(base_url()."pcbuilder","refresh");
+				}
+				
+			}else{
+			$this->session->set_userdata('build_table','');
+			redirect(base_url()."logSign","refresh");
+		    }
+	}
+
+	public function updateTable($id,$str){
+		
+		$this->User_model->updateTable($id,$str);
+		redirect(base_url()."pcbuilder","refresh");
+
+	}
+
+	public function select($str){
+		$data['baseurl'] = $this->config->item('base_url');
+		
+		$data['products'] = $this->User_model->getproduct($str);
+		$data['cart'] = $this->User_model->getCart();
+		$data['pagename'] = $str;
+		$data['header'] = $this->load->view('pc_builder/header', $data, TRUE);
+		$data['footer'] = $this->load->view('pc_builder/footer', $data, TRUE);
+		$this->load->view('pc_builder/select',$data);
+	}
+
 
 
 
@@ -1006,7 +1091,7 @@ class Welcome extends CI_Controller {
 
 	//---------------------------------------SSL COMmerz-------------------------------------------------//
 
-	public function requestssl($amount)
+	public function requestssl($amount,$key)
 	{
 		// if($this->input->get_post('submit'))
 		// {
@@ -1027,7 +1112,7 @@ class Welcome extends CI_Controller {
 			$post_data['total_amount'] = $amount;
 			$post_data['currency'] = "BDT";
 			$post_data['tran_id'] = uniqid()."_sslc";
-			$post_data['success_url'] = base_url()."validate";
+			$post_data['success_url'] = base_url()."validate/".$key;
 			$post_data['fail_url'] = base_url()."fail";
 			$post_data['cancel_url'] = base_url()."cancel";
 			# $post_data['multi_card_name'] = "mastercard,visacard,amexcard";  # DISABLE TO DISPLAY ALL AVAILABLE
@@ -1099,7 +1184,7 @@ class Welcome extends CI_Controller {
 		// }
 	}
 
-	public function validateresponse()
+	public function validateresponse($key)
 	{
 		// $this->load->library('sslcommerz');
 		$database_order_status = 'Pending'; // Check this from your database here Pending is dummy data,
@@ -1126,14 +1211,14 @@ class Welcome extends CI_Controller {
 						'time' => $_POST['tran_date']
 					);
 					$this->session->set_userdata('tarndata', $session);
-					redirect(base_url()."checkadd/".$_POST['amount'],"refresh");
+					redirect(base_url()."checkadd/".$_POST['amount']."/".$key,"refresh");
 				}
 				else
 				{
 					/******************************************************************
 					# Just redirect to your success page status already changed by IPN.
 					******************************************************************/
-					redirect(base_url()."checkadd/".$_POST['amount'],"refresh");
+					redirect(base_url()."checkadd/".$_POST['amount']."/".$key,"refresh");
 					//echo "Just redirect to your success page";
 				}
 			}

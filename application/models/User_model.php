@@ -13,11 +13,20 @@ class User_model extends CI_Model {
 
 
 
-    public function paid(){
-        $this->db->set('ischeck','1');
-        $this->db->where('user_name',$this->session->userdata('name'));
-        $this->db->where('ischeck','0');
-        $this->db->update('cart');
+    public function paid($key){
+        if($key=="check"){
+            $this->db->set('ischeck','1');
+            $this->db->where('user_name',$this->session->userdata('name'));
+            $this->db->where('ischeck','0');
+            $this->db->update('cart');
+        }else if($key=='list'){
+            $this->session->set_userdata('build_table','');
+            $this->db->set('ischeck','1');
+            $this->db->where('user_name',$this->session->userdata('name'));
+            $this->db->where('id',$this->session->userdata('build_table'));
+            $this->db->where('ischeck','0');
+            $this->db->update('build');
+        }
     }
     
     public function registration($data){
@@ -134,6 +143,46 @@ class User_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+
+    public function createTable(){
+
+        $this->db->set('user_name',$this->session->userdata('name'));
+        $this->db->set('id',$this->session->userdata('build_table'));
+        $this->db->set('ischeck','0');
+        $this->db->insert('build');
+
+    }
+
+    public function updateTable($id,$str){
+        $this->db->set($str,$id);
+        $this->db->where('user_name',$this->session->userdata('name'));
+        $this->db->where('id',$this->session->userdata('build_table'));
+        $this->db->where('ischeck','0');
+        $this->db->update('build');
+    }
+
+    public function getTable(){
+        $this->db->select('*');
+        $this->db->from('build');
+        $this->db->where('user_name',$this->session->userdata('name'));
+        $this->db->where('id',$this->session->userdata('build_table'));
+        $this->db->where('ischeck','0');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function getgpu()

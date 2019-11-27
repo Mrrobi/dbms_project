@@ -23,14 +23,14 @@
     <!-- row -->
     <div class="row">
         <?php foreach($products as $p){ ?>
-        <div class="col-md-4 col-sm-6 col-xs-6">
+        <div class="col-md-2 col-sm-4 col-xs-4">
             <div class="product product-single">
                 <div class="product-thumb">
                     <div class="product-label">
                         <span>New</span>
                     </div>
                     <!-- <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button> -->
-                    <img width='50' src="<?php echo $baseurl ?>/uploads/<?php echo $pagename?>/<?php echo $p->path ?>"  alt="">
+                    <img src="<?php echo $baseurl ?>/uploads/<?php echo $pagename?>/<?php echo $p->path ?>"  alt="">
                 </div>
                 <div class="product-body">
                     <h3 class="product-price"><?php echo $p->price."TK" ?></h3>
