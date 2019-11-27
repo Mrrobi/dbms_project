@@ -75,7 +75,7 @@
 							</div>
 							<p><strong>Availability:</strong> <?php echo $p->quantity.' Left' ?></p>
 							<p><strong>Brand:</strong> <?php echo $p->brand ?></p>
-							<?php echo $p->details ?>
+							
 
 							<div class="product-btns">
 								<div class="qty-input">
@@ -86,11 +86,6 @@
 								<?php if($this->session->userdata('role')=='0') { ?>
                             <button class="primary-btn add-to-cart" onclick="location.href='<?php echo base_url()?>cart/<?php echo $pagename?>/<?php echo $p->ID ?>'"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                         <?php } ?>
-								<div class="pull-right">
-									<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-									<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-									<button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -209,7 +204,7 @@
 							</div>
 						</div>
 					</div>!--  -->
-
+					<?php echo $p->details ?>
                 </div>
                 <?php } ?>
 				<!-- /Product Details -->

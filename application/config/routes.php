@@ -80,3 +80,4 @@ $route['product-page/(:any)/(:any)'] = 'welcome/product_page/$1/$2';
 $route['cart/delete/(:any)'] = 'welcome/cart_delete/$1';
 $route['cart/(:any)/(:any)'] = 'welcome/adCart/$1/$2';
 $route['product_delete/(:any)/(:any)'] = 'welcome/product_delete/$1/$2';
+$route['product_edit/(:any)/(:any)'] = 'welcome/product_edit/$1/$2';

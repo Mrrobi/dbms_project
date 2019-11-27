@@ -248,8 +248,28 @@ class User_model extends CI_Model {
         //echo $t;
         return $t;
     }
+    public function cpu_update($data){
+        $id = $this->session->userdata('p_id');
+        $this->db->where('id',$id);
+        $t = $this->db->update('cpu',$data);
+        if(isset($_SESSION['p_id'])){
+            unset($_SESSION['p_id']);
+        }
+        //echo $t;
+        return $t;
+    }
     public function gpu_in($data){
         $t = $this->db->insert('gpu',$data);
+        //echo $t;
+        return $t;
+    }
+    public function gpu_update($data){
+        $id = $this->session->userdata('p_id');
+        $this->db->where('id',$id);
+        $t = $this->db->update('gpu',$data);
+        if(isset($_SESSION['p_id'])){
+            unset($_SESSION['p_id']);
+        }
         //echo $t;
         return $t;
     }
@@ -258,8 +278,28 @@ class User_model extends CI_Model {
         //echo $t;
         return $t;
     }
+    public function psu_update($data){
+        $id = $this->session->userdata('p_id');
+        $this->db->where('id',$id);
+        $t = $this->db->update('psu',$data);
+        if(isset($_SESSION['p_id'])){
+            unset($_SESSION['p_id']);
+        }
+        //echo $t;
+        return $t;
+    }
     public function ram_in($data){
         $t = $this->db->insert('ram',$data);
+        //echo $t;
+        return $t;
+    }
+    public function ram_update($data){
+        $id = $this->session->userdata('p_id');
+        $this->db->where('id',$id);
+        $t = $this->db->update('ram',$data);
+        if(isset($_SESSION['p_id'])){
+            unset($_SESSION['p_id']);
+        }
         //echo $t;
         return $t;
     }
@@ -268,8 +308,28 @@ class User_model extends CI_Model {
         //echo $t;
         return $t;
     }
+    public function hdd_update($data){
+        $id = $this->session->userdata('p_id');
+        $this->db->where('id',$id);
+        $t = $this->db->update('hdd',$data);
+        if(isset($_SESSION['p_id'])){
+            unset($_SESSION['p_id']);
+        }
+        //echo $t;
+        return $t;
+    }
     public function ssd_in($data){
         $t = $this->db->insert('ssd',$data);
+        //echo $t;
+        return $t;
+    }
+    public function ssd_update($data){
+        $id = $this->session->userdata('p_id');
+        $this->db->where('id',$id);
+        $t = $this->db->update('ssd',$data);
+        if(isset($_SESSION['p_id'])){
+            unset($_SESSION['p_id']);
+        }
         //echo $t;
         return $t;
     }
@@ -278,8 +338,28 @@ class User_model extends CI_Model {
         //echo $t;
         return $t;
     }
+    public function mboard_update($data){
+        $id = $this->session->userdata('p_id');
+        $this->db->where('id',$id);
+        $t = $this->db->update('motherboard',$data);
+        if(isset($_SESSION['p_id'])){
+            unset($_SESSION['p_id']);
+        }
+        //echo $t;
+        return $t;
+    }
     public function casing_in($data){
         $t = $this->db->insert('casing',$data);
+        //echo $t;
+        return $t;
+    }
+    public function casing_update($data){
+        $id = $this->session->userdata('p_id');
+        $this->db->where('id',$id);
+        $t = $this->db->update('casing',$data);
+        if(isset($_SESSION['p_id'])){
+            unset($_SESSION['p_id']);
+        }
         //echo $t;
         return $t;
     }

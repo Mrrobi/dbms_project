@@ -23,7 +23,7 @@
     <!-- row -->
     <div class="row">
         <?php foreach($products as $p){ ?>
-        <div class="col-md-2 col-sm-4 col-xs-4">
+        <div class="col-md-3 col-sm-4 col-xs-4">
             <div class="product product-single">
                 <div class="product-thumb">
                     <div class="product-label">

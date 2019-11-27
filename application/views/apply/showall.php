@@ -26,6 +26,7 @@
                                 <th>Brand</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
+                                <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -37,7 +38,8 @@
                                     <td><?php echo $p->brand ?></td>
                                     <td class="center"><?php echo $p->price ?></td>
                                     <td class="center"><?php echo $p->quantity ?></td>
-                                    <td class="center"><a href="<?php echo $baseurl ?>/product_delete/<?php echo $pagename?>/<?php echo $p->ID ?>" class="btn btn-danger"> Click Me</a></td>
+                                    <td class="center"><a href="<?php echo $baseurl ?>/product_edit/<?php echo $pagename?>/<?php echo $p->ID ?>" class="btn btn-info"> Edit</a></td>
+                                    <td class="center"><a href="<?php echo $baseurl ?>/product_delete/<?php echo $pagename?>/<?php echo $p->ID ?>" class="btn btn-danger"> Delete</a></td>
                                 </tr>
                                 <?php } ?>
                         </tbody>

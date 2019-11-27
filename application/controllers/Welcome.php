@@ -159,6 +159,45 @@ class Welcome extends CI_Controller {
 
 	}
 
+
+	public function product_edit($url,$id){
+		$this->session->set_userdata('p_id',$id);
+		switch($url){
+			case 'cpu':
+				$this->session->set_userdata('edit',true);
+				redirect(base_url().'welcome/ad_cpu','refresh');
+			break;
+			case 'gpu':
+				$this->session->set_userdata('edit',true);
+				redirect(base_url().'welcome/ad_gpu','refresh');
+			break;
+			case 'psu':
+				$this->session->set_userdata('edit',true);
+				redirect(base_url().'welcome/ad_psu','refresh');
+			break;
+			case 'ram':
+				$this->session->set_userdata('edit',true);
+				redirect(base_url().'welcome/ad_ram','refresh');
+			break;
+			case 'ssd':
+				$this->session->set_userdata('edit',true);
+				redirect(base_url().'welcome/ad_ssd','refresh');
+			break;
+			case 'hdd':
+				$this->session->set_userdata('edit',true);
+				redirect(base_url().'welcome/ad_hdd','refresh');
+			break;
+			case 'casing':
+				$this->session->set_userdata('edit',true);
+				redirect(base_url().'welcome/ad_casing','refresh');
+			break;
+			case 'motherboard':
+				$this->session->set_userdata('edit',true);
+				redirect(base_url().'welcome/ad_mboard','refresh');
+			break;
+		}
+	}
+
 	//Product Delete controll
 	public function product_delete($url,$id){
 		$this->User_model->product_delete($url,$id);
@@ -379,6 +418,11 @@ class Welcome extends CI_Controller {
 
 	public function ad_cpu(){
 		$session = $this->session->userdata('logged_in');
+		if(!$this->session->userdata('edit')){
+			if(isset($_SESSION['p_id'])){
+				unset($_SESSION['p_id']);
+			}
+		}
 	    
 	    if($session){
 	      
@@ -446,7 +490,14 @@ class Welcome extends CI_Controller {
 			//$data['proDetails'] = $this->User_model->getProjectDetails($data['session']['username']);
 			//$data['Team'] = $this->User_model->getTeamMembers($data['session']['username']);
 			
-			$test = $this->User_model->cpu_in($data);
+			if($this->session->userdata('p_id')){
+				if(isset($_SESSION['edit'])){
+					unset($_SESSION['edit']);
+				}
+				$test = $this->User_model->cpu_update($data);
+			}else{
+				$test = $this->User_model->cpu_in($data);
+			}
 
 			if($test){
 				$this->session->set_flashdata('response',"Data Inserted Successfully");
@@ -462,7 +513,11 @@ class Welcome extends CI_Controller {
 
 	public function ad_gpu(){
 		$session = $this->session->userdata('logged_in');
-	    
+	    if(!$this->session->userdata('edit')){
+			if(isset($_SESSION['p_id'])){
+				unset($_SESSION['p_id']);
+			}
+		}
 	    if($session){
 	      
 		$data['baseurl'] = $this->config->item('base_url');
@@ -531,7 +586,14 @@ class Welcome extends CI_Controller {
 			//$data['proDetails'] = $this->User_model->getProjectDetails($data['session']['username']);
 			//$data['Team'] = $this->User_model->getTeamMembers($data['session']['username']);
 			
-			$test = $this->User_model->gpu_in($data);
+			if($this->session->userdata('p_id')){
+				if(isset($_SESSION['edit'])){
+					unset($_SESSION['edit']);
+				}
+				$test = $this->User_model->gpu_update($data);
+			}else{
+				$test = $this->User_model->gpu_in($data);
+			}
 
 			if($test){
 				$this->session->set_flashdata('response',"Data Inserted Successfully");
@@ -549,7 +611,11 @@ class Welcome extends CI_Controller {
 
 	public function ad_psu(){
 		$session = $this->session->userdata('logged_in');
-	    
+	    if(!$this->session->userdata('edit')){
+			if(isset($_SESSION['p_id'])){
+				unset($_SESSION['p_id']);
+			}
+		}
 	    if($session){
 	      
 		$data['baseurl'] = $this->config->item('base_url');
@@ -616,7 +682,14 @@ class Welcome extends CI_Controller {
 			//$data['proDetails'] = $this->User_model->getProjectDetails($data['session']['username']);
 			//$data['Team'] = $this->User_model->getTeamMembers($data['session']['username']);
 			
-			$test = $this->User_model->psu_in($data);
+			if($this->session->userdata('p_id')){
+				if(isset($_SESSION['edit'])){
+					unset($_SESSION['edit']);
+				}
+				$test = $this->User_model->psu_update($data);
+			}else{
+				$test = $this->User_model->psu_in($data);
+			}
 
 			if($test){
 				$this->session->set_flashdata('response',"Data Inserted Successfully");
@@ -634,7 +707,11 @@ class Welcome extends CI_Controller {
 
 	public function ad_ram(){
 		$session = $this->session->userdata('logged_in');
-	    
+	    if(!$this->session->userdata('edit')){
+			if(isset($_SESSION['p_id'])){
+				unset($_SESSION['p_id']);
+			}
+		}
 	    if($session){
 	      
 		$data['baseurl'] = $this->config->item('base_url');
@@ -701,7 +778,14 @@ class Welcome extends CI_Controller {
 			//$data['proDetails'] = $this->User_model->getProjectDetails($data['session']['username']);
 			//$data['Team'] = $this->User_model->getTeamMembers($data['session']['username']);
 			
-			$test = $this->User_model->ram_in($data);
+			if($this->session->userdata('p_id')){
+				if(isset($_SESSION['edit'])){
+					unset($_SESSION['edit']);
+				}
+				$test = $this->User_model->ram_update($data);
+			}else{
+				$test = $this->User_model->ram_in($data);
+			}
 
 			if($test){
 				$this->session->set_flashdata('response',"Data Inserted Successfully");
@@ -720,7 +804,11 @@ class Welcome extends CI_Controller {
 
 	public function ad_ssd(){
 		$session = $this->session->userdata('logged_in');
-	    
+	    if(!$this->session->userdata('edit')){
+			if(isset($_SESSION['p_id'])){
+				unset($_SESSION['p_id']);
+			}
+		}
 	    if($session){
 	      
 		$data['baseurl'] = $this->config->item('base_url');
@@ -787,7 +875,14 @@ class Welcome extends CI_Controller {
 			//$data['proDetails'] = $this->User_model->getProjectDetails($data['session']['username']);
 			//$data['Team'] = $this->User_model->getTeamMembers($data['session']['username']);
 			
-			$test = $this->User_model->ssd_in($data);
+			if($this->session->userdata('p_id')){
+				if(isset($_SESSION['edit'])){
+					unset($_SESSION['edit']);
+				}
+				$test = $this->User_model->ssd_update($data);
+			}else{
+				$test = $this->User_model->ssd_in($data);
+			}
 
 			if($test){
 				$this->session->set_flashdata('response',"Data Inserted Successfully");
@@ -804,7 +899,11 @@ class Welcome extends CI_Controller {
 
 	public function ad_hdd(){
 		$session = $this->session->userdata('logged_in');
-	    
+	    if(!$this->session->userdata('edit')){
+			if(isset($_SESSION['p_id'])){
+				unset($_SESSION['p_id']);
+			}
+		}
 	    if($session){
 	      
 		$data['baseurl'] = $this->config->item('base_url');
@@ -871,7 +970,14 @@ class Welcome extends CI_Controller {
 			//$data['proDetails'] = $this->User_model->getProjectDetails($data['session']['username']);
 			//$data['Team'] = $this->User_model->getTeamMembers($data['session']['username']);
 			
-			$test = $this->User_model->hdd_in($data);
+			if($this->session->userdata('p_id')){
+				if(isset($_SESSION['edit'])){
+					unset($_SESSION['edit']);
+				}
+				$test = $this->User_model->hdd_update($data);
+			}else{
+				$test = $this->User_model->hdd_in($data);
+			}
 
 			if($test){
 				$this->session->set_flashdata('response',"Data Inserted Successfully");
@@ -888,7 +994,11 @@ class Welcome extends CI_Controller {
 
 	public function ad_mboard(){
 		$session = $this->session->userdata('logged_in');
-	    
+	    if(!$this->session->userdata('edit')){
+			if(isset($_SESSION['p_id'])){
+				unset($_SESSION['p_id']);
+			}
+		}
 	    if($session){
 	      
 		$data['baseurl'] = $this->config->item('base_url');
@@ -926,7 +1036,7 @@ class Welcome extends CI_Controller {
 			$data['details'] = $this->input->post('details');
 
 
-			$config['upload_path']   = './uploads/mboard/'; 
+			$config['upload_path']   = './uploads/motherboard/'; 
 			$config['allowed_types'] = 'gif|jpg|png'; 
 			$config['max_size']      = 1000; 
 			$config['max_width']     = 4096; 
@@ -957,7 +1067,14 @@ class Welcome extends CI_Controller {
 			//$data['proDetails'] = $this->User_model->getProjectDetails($data['session']['username']);
 			//$data['Team'] = $this->User_model->getTeamMembers($data['session']['username']);
 			
-			$test = $this->User_model->mboard_in($data);
+			if($this->session->userdata('p_id')){
+				if(isset($_SESSION['edit'])){
+					unset($_SESSION['edit']);
+				}
+				$test = $this->User_model->mboard_update($data);
+			}else{
+				$test = $this->User_model->mboard_in($data);
+			}
 
 			if($test){
 				$this->session->set_flashdata('response',"Data Inserted Successfully");
@@ -974,7 +1091,11 @@ class Welcome extends CI_Controller {
 
 	public function ad_casing(){
 		$session = $this->session->userdata('logged_in');
-	    
+	    if(!$this->session->userdata('edit')){
+			if(isset($_SESSION['p_id'])){
+				unset($_SESSION['p_id']);
+			}
+		}
 	    if($session){
 	      
 		$data['baseurl'] = $this->config->item('base_url');
@@ -1043,7 +1164,14 @@ class Welcome extends CI_Controller {
 			//$data['proDetails'] = $this->User_model->getProjectDetails($data['session']['username']);
 			//$data['Team'] = $this->User_model->getTeamMembers($data['session']['username']);
 			
-			$test = $this->User_model->casing_in($data);
+			if($this->session->userdata('p_id')){
+				if(isset($_SESSION['edit'])){
+					unset($_SESSION['edit']);
+				}
+				$test = $this->User_model->casing_update($data);
+			}else{
+				$test = $this->User_model->casing_in($data);
+			}
 
 			if($test){
 				$this->session->set_flashdata('response',"Data Inserted Successfully");

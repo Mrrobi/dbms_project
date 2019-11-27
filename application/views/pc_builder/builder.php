@@ -44,7 +44,7 @@
 										<!-- <td class="price text-center"><strong></strong><br><del class="font-weak"><small></small></del></td> -->
 										<!-- <td class="qty text-center"><input class="input" type="number" value="1"></td> -->
 										<td class="total text-center"><strong class="primary-color"></strong><?php echo $p->price; $count+=$p->price; ?></td>
-                                        <td class="text-right"><a class="cancel-btn" href='#'><i class="fa fa-close"></i></a></td>
+                                        <td class="text-right"><a class="btn btn-info" href='#'>Change</a></td>
                                         <?php }?>
                                         <?php if($cpu==null){?>
                                             <td class="text-right"><a class="cancel-btn" href='<?php echo base_url()?>welcome/select/cpu'><i class="fas fa-select"></i> Add</a></td>
@@ -60,7 +60,7 @@
 										<!-- <td class="price text-center"><strong></strong><br><del class="font-weak"><small></small></del></td> -->
 										<!-- <td class="qty text-center"><input class="input" type="number" value="1"></td> -->
 										<td class="total text-center"><strong class="primary-color"></strong><?php echo $p->price; $count+=$p->price; ?></td>
-                                        <td class="text-right"><a class="cancel-btn" href='#'><i class="fa fa-close"></i></a></td>
+                                        <td class="text-right"><a class="btn btn-info" href='#'>Change</a></td>
                                         <?php }?>
                                         <?php if($motherboard==null){?>
                                             <td class="text-right"><a class="cancel-btn" href='<?php echo base_url()?>welcome/select/motherboard'><i class="fas fa-select"></i>Add</a></td>
@@ -74,7 +74,7 @@
 										<!-- <td class="price text-center"><strong></strong><br><del class="font-weak"><small></small></del></td> -->
 										<!-- <td class="qty text-center"><input class="input" type="number" value="1"></td> -->
 										<td class="total text-center"><strong class="primary-color"></strong><?php echo $p->price; $count+=$p->price; ?></td>
-                                        <td class="text-right"><a class="cancel-btn" href='#'><i class="fa fa-close"></i></a></td>
+                                        <td class="text-right"><a class="btn btn-info" href='#'>Change</a></td>
                                         <?php }?>
                                         <?php if($ram==null){?>
                                             <td class="text-right"><a class="cancel-btn" href='<?php echo base_url()?>welcome/select/ram'><i class="fas fa-select"></i>Add</a></td>
@@ -88,7 +88,7 @@
 										<!-- <td class="price text-center"><strong></strong><br><del class="font-weak"><small></small></del></td> -->
 										<!-- <td class="qty text-center"><input class="input" type="number" value="1"></td> -->
 										<td class="total text-center"><strong class="primary-color"></strong><?php echo $p->price; $count+=$p->price; ?></td>
-                                        <td class="text-right"><a class="cancel-btn" href='#'><i class="fa fa-close"></i></a></td>
+                                        <td class="text-right"><a class="btn btn-info" href='#'>Change</a></td>
                                         <?php }?>
                                         <?php if($ssd==null){?>
                                             <td class="text-right"><a class="cancel-btn" href='<?php echo base_url()?>welcome/select/ssd'><i class="fas fa-select"></i>Add</a></td>
@@ -103,7 +103,7 @@
 										<!-- <td class="price text-center"><strong></strong><br><del class="font-weak"><small></small></del></td> -->
 										<!-- <td class="qty text-center"><input class="input" type="number" value="1"></td> -->
 										<td class="total text-center"><strong class="primary-color"></strong><?php echo $p->price; $count+=$p->price; ?></td>
-                                        <td class="text-right"><a class="cancel-btn" href='#'><i class="fa fa-close"></i></a></td>
+                                        <td class="text-right"><a class="btn btn-info" href='#'>Change</a></td>
                                         <?php }?>
                                         <?php if($gpu==null){?>
                                             <td class="text-right"><a class="cancel-btn" href='<?php echo base_url()?>welcome/select/gpu'><i class="fas fa-select"></i>Add</a></td>
@@ -118,7 +118,7 @@
 										<!-- <td class="price text-center"><strong></strong><br><del class="font-weak"><small></small></del></td> -->
 										<!-- <td class="qty text-center"><input class="input" type="number" value="1"></td> -->
 										<td class="total text-center"><strong class="primary-color"></strong><?php echo $p->price; $count+=$p->price; ?></td>
-                                        <td class="text-right"><a class="cancel-btn" href='#'><i class="fa fa-close"></i></a></td>
+                                        <td class="text-right"><a class="btn btn-info" href='#'>Change</a></td>
                                         <?php }?>
                                         <?php if($hdd==null){?>
                                             <td class="text-right"><a class="cancel-btn" href='<?php echo base_url()?>welcome/select/hdd'><i class="fas fa-select"></i>Add</a></td>
@@ -132,7 +132,7 @@
 										<!-- <td class="price text-center"><strong></strong><br><del class="font-weak"><small></small></del></td> -->
 										<!-- <td class="qty text-center"><input class="input" type="number" value="1"></td> -->
 										<td class="total text-center"><strong class="primary-color"></strong><?php echo $p->price; $count+=$p->price; ?></td>
-                                        <td class="text-right"><a class="cancel-btn" href='#'><i class="fa fa-close"></i></a></td>
+                                        <td class="text-right"><a class="btn btn-info" href='#'>Change</a></td>
                                         <?php }?>
                                         <?php if($casing==null){?>
                                             <td class="text-right"><a class="cancel-btn" href='<?php echo base_url()?>welcome/select/casing'><i class="fas fa-select"></i>Add</a></td>
@@ -146,7 +146,7 @@
 										<!-- <td class="price text-center"><strong></strong><br><del class="font-weak"><small></small></del></td> -->
 										<!-- <td class="qty text-center"><input class="input" type="number" value="1"></td> -->
 										<td class="total text-center"><strong class="primary-color"></strong><?php echo $p->price; $count+=$p->price; ?></td>
-                                        <td class="text-right"><a class="cancel-btn" href='#'><i class="fa fa-close"></i></a></td>
+                                        <td class="text-right"><a class="btn btn-info" href='#'>Change</a></td>
                                         <?php }?>
                                         <?php if($psu==null){?>
                                             <td class="text-right"><a class="cancel-btn" href='<?php echo base_url()?>welcome/select/psu'><i class="fas fa-select"></i>Add</a></td>
