@@ -9,7 +9,7 @@
 		<!-- start: page -->
 		<section class="body-sign">
 			<div class="center-sign">
-				<a href="https://preview.oklerthemes.com/" class="logo float-left">
+				<a href="<?php echo base_url();?>" class="logo float-left">
 					<img src="<?php echo base_url() ?>assets/img/logo.png" height="54" alt="Porto Admin" />
 				</a>
 
@@ -19,7 +19,7 @@
 					</div>
 					<div class="card-body">
 					<?php $attributes = array("name" => "registrationform");
-						echo form_open("welcome/register", $attributes);?>
+						echo form_open("welcome/regi",$attributes);?>
 							<div class="form-group mb-3">
 								<label>First Name</label>
 								<input class="form-control" name="fname" placeholder="Your First Name" type="text" value="<?php echo set_value('fname'); ?>" />
@@ -42,42 +42,30 @@
 								<div class="row">
 									<div class="col-sm-6 mb-3">
 										<label>Password</label>
-										<input class="form-control" name="password" placeholder="Password" type="password" />
+										<input class="form-control" name="password" placeholder="Password" type="password" value="<?php echo set_value('password'); ?>" />
 										<span class="text-danger"><?php echo form_error('password'); ?></span>
 									</div>
 									<div class="col-sm-6 mb-3">
 										<label>Password Confirmation</label>
-										<input class="form-control" name="cpassword" placeholder="Confirm Password" type="password" />
-										<span class="text-danger"><?php echo form_error('cpassword'); ?></span>
+										<input class="form-control" name="passconf" placeholder="Confirm Password" type="password" value="<?php echo set_value('passconf'); ?>" />
+										<span class="text-danger"><?php echo form_error('passconf'); ?></span>
 									</div>
 								</div>
 							</div>
 
 							<div class="row">
-								<div class="col-sm-8">
-									<div class="checkbox-custom checkbox-default">
-										<input id="AgreeTerms" name="agreeterms" type="checkbox"/>
-										<label for="AgreeTerms">I agree with <a href="#">terms of use</a></label>
+									<div class="col-sm-1 text-right">
+											<button type='reset' class="btn btn-primary mt-2">Cancel</button>
+										</div>
+									<div class="col-sm-11 text-right">
+											<button type='submit' class="btn btn-primary mt-2">Sign Up</button>
 									</div>
-								</div>
-								<div class="col-sm-4 text-right">
-								<button name="submit" type="submit" class="btn btn-default">Signup</button>
-								<button name="cancel" type="reset" class="btn btn-default">Cancel</button>
-								</div>
+								
 								<?php echo form_close(); ?>
 								<?php echo $this->session->flashdata('msg'); ?>
 							</div>
 
-							<span class="mt-3 mb-3 line-thru text-center text-uppercase">
-								<span>or</span>
-							</span>
-
-							<div class="mb-1 text-center">
-								<a class="btn btn-facebook mb-3 ml-1 mr-1" href="#">Connect with <i class="fab fa-facebook-f"></i></a>
-								<a class="btn btn-twitter mb-3 ml-1 mr-1" href="#">Connect with <i class="fab fa-twitter"></i></a>
-							</div>
-
-							<p class="text-center">Already have an account? <a href="<?php echo base_url() ?>welcome/login">Sign In!</a></p>
+							<p class="text-center">Already have an account? <a href="<?php echo base_url() ?>welcome/logSign">Sign In!</a></p>
 					</div>
 				</div>
 

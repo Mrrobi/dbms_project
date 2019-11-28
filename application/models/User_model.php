@@ -16,13 +16,13 @@ class User_model extends CI_Model {
     public function paid($key){
         if($key=="check"){
             $this->db->set('ischeck','1');
-            $this->db->where('user_name',$this->session->userdata('name'));
+            $this->db->where('user_name',$this->session->userdata('user'));
             $this->db->where('ischeck','0');
             $this->db->update('cart');
         }else if($key=='list'){
             $this->session->set_userdata('build_table','');
             $this->db->set('ischeck','1');
-            $this->db->where('user_name',$this->session->userdata('name'));
+            $this->db->where('user_name',$this->session->userdata('user'));
             $this->db->where('id',$this->session->userdata('build_table'));
             $this->db->where('ischeck','0');
             $this->db->update('build');
@@ -68,7 +68,7 @@ class User_model extends CI_Model {
     public function delete($str){
 
         $this->db->set($str,'');
-        $this->db->where('user_name',$_SESSION['name']);
+        $this->db->where('user_name',$_SESSION['user']);
         $this->db->where('id',$_SESSION['build_table']);
         $this->db->update('build');
 
@@ -92,7 +92,7 @@ class User_model extends CI_Model {
 
         $this->db->select('*');
         $this->db->from('cart');
-        $this->db->where('user_name',$this->session->userdata('name'));
+        $this->db->where('user_name',$this->session->userdata('user'));
         $this->db->where('ischeck','0');
         $query = $this->db->get();
 
@@ -103,7 +103,7 @@ class User_model extends CI_Model {
 
     public function checkadd($total){
 
-        $this->db->set('user_name',$this->session->userdata('name'));
+        $this->db->set('user_name',$this->session->userdata('user'));
         $this->db->set('total_balance',$total);
         $this->db->set('ispaid','1');
         $ses = $this->session->userdata('tarndata');
@@ -115,7 +115,7 @@ class User_model extends CI_Model {
 
         $this->db->select('*');
         $this->db->from('checkout');
-        $this->db->where('user_name',$this->session->userdata('name'));
+        $this->db->where('user_name',$this->session->userdata('user'));
         $this->db->order_by('date','desc');
         $this->db->limit(1);
         $query = $this->db->get();
@@ -125,14 +125,14 @@ class User_model extends CI_Model {
     public function getHistory(){
         $this->db->select('*');
         $this->db->from('history');
-        $this->db->where('User_name',$this->session->userdata('name'));
+        $this->db->where('User_name',$this->session->userdata('user'));
         $query = $this->db->get();
         return $query->result();
     }
 
     public function addHistory($id){
         $this->db->set('Checkout_id',$id);
-        $this->db->set('User_name',$this->session->userdata('name'));
+        $this->db->set('User_name',$this->session->userdata('user'));
         $ses = $this->session->userdata('tarndata');
         $this->db->set('total_balance',$ses['amount']);
         $this->db->set('time',$ses['time']);
@@ -148,7 +148,7 @@ class User_model extends CI_Model {
                 
                 if($this->session->flashdata('edit')){
                     $this->db->select('*');
-                    $this->db->where('user_name',$_SESSION['name']);
+                    $this->db->where('user_name',$_SESSION['user']);
                     $this->db->where('id',$_SESSION['build_table']);
                     $this->db->from('build');
                     $q1 = $this->db->get();
@@ -156,7 +156,7 @@ class User_model extends CI_Model {
 
                     if($t1[0]->motherboard!=null){
                         $this->db->select('m.socket as m_s');
-                        $this->db->where('b.user_name',$_SESSION['name']);
+                        $this->db->where('b.user_name',$_SESSION['user']);
                         $this->db->where('b.id',$_SESSION['build_table']);
                         $this->db->from('build as b');
                         $this->db->join('motherboard as m' , 'm.id=b.motherboard');
@@ -170,7 +170,7 @@ class User_model extends CI_Model {
             case 'motherboard':
                 if($this->session->flashdata('edit')){
                     $this->db->select('*');
-                    $this->db->where('user_name',$_SESSION['name']);
+                    $this->db->where('user_name',$_SESSION['user']);
                     $this->db->where('id',$_SESSION['build_table']);
                     $this->db->from('build');
                     $q1 = $this->db->get();
@@ -178,7 +178,7 @@ class User_model extends CI_Model {
 
                     if($t1[0]->cpu!=null){
                         $this->db->select('c.socket as c_s');
-                        $this->db->where('b.user_name',$_SESSION['name']);
+                        $this->db->where('b.user_name',$_SESSION['user']);
                         $this->db->where('b.id',$_SESSION['build_table']);
                         $this->db->from('build as b');
                         $this->db->join('cpu as c' , 'c.id=b.cpu');
@@ -192,7 +192,7 @@ class User_model extends CI_Model {
             case 'ram':
                 if($this->session->flashdata('edit')){
                     $this->db->select('*');
-                    $this->db->where('user_name',$_SESSION['name']);
+                    $this->db->where('user_name',$_SESSION['user']);
                     $this->db->where('id',$_SESSION['build_table']);
                     $this->db->from('build');
                     $q1 = $this->db->get();
@@ -201,7 +201,7 @@ class User_model extends CI_Model {
                     if($t1[0]->motherboard!=null){
                         $this->db->select('m.bus as max');
                         $this->db->select('m.min_bus as min');
-                        $this->db->where('b.user_name',$_SESSION['name']);
+                        $this->db->where('b.user_name',$_SESSION['user']);
                         $this->db->where('b.id',$_SESSION['build_table']);
                         $this->db->from('build as b');
                         $this->db->join('motherboard as m' , 'm.id=b.motherboard');
@@ -237,7 +237,7 @@ class User_model extends CI_Model {
 
     public function createTable(){
 
-        $this->db->set('user_name',$this->session->userdata('name'));
+        $this->db->set('user_name',$this->session->userdata('user'));
         $this->db->set('id',$this->session->userdata('build_table'));
         $this->db->set('ischeck','0');
         $this->db->insert('build');
@@ -246,7 +246,7 @@ class User_model extends CI_Model {
 
     public function updateTable($id,$str){
         $this->db->set($str,$id);
-        $this->db->where('user_name',$this->session->userdata('name'));
+        $this->db->where('user_name',$this->session->userdata('user'));
         $this->db->where('id',$this->session->userdata('build_table'));
         $this->db->where('ischeck','0');
         $this->db->update('build');
@@ -255,7 +255,7 @@ class User_model extends CI_Model {
     public function getTable(){
         $this->db->select('*');
         $this->db->from('build');
-        $this->db->where('user_name',$this->session->userdata('name'));
+        $this->db->where('user_name',$this->session->userdata('user'));
         $this->db->where('id',$this->session->userdata('build_table'));
         $this->db->where('ischeck','0');
         $query = $this->db->get();
@@ -457,24 +457,38 @@ class User_model extends CI_Model {
 
 
     //insert into user table
-	function insertUser($data)
+	function insert_record($data)
     {
-		return $this->db->insert('user', $data);
-	}
-	
+		return $this->db->insert('admin_user', $data);
+    }
+    
+    public function get_hash_value($email){
+        $this->db->select('*');
+        $this->db->where('email',$email);
+        $this->db->from('admin_user');
+        $q = $this->db->get();
+        return $q->result();
+    }
+    
+    function verify_user($email) {
+        $data = array('is_verified' => 1);
+        $this->db->where('email', $email);
+        $this->db->update('admin_user', $data);
+    }
+    
 	//send verification email to user's email id
 	function sendEmail($to_email)
 	{
-		$from_email = 'team@mydomain.com';
+		$from_email = 'robi@mrrobi.tech';
 		$subject = 'Verify Your Email Address';
-		$message = 'Dear User,<br /><br />Please click on the below activation link to verify your email address.<br /><br /> http://www.mydomain.com/user/verify/' . md5($to_email) . '<br /><br /><br />Thanks<br />Mydomain Team';
+		$message = 'Dear User,<br /><br />Please click on the below activation link to verify your email address.<br /><br /> http://mrrobi.tech/welcome/verify/' . md5($to_email) . '<br /><br /><br />Thanks<br />Mydomain Team';
 		
 		//configure email settings
 		$config['protocol'] = 'smtp';
-		$config['smtp_host'] = 'ssl://smtp.mydomain.com'; //smtp host name
+		$config['smtp_host'] = 'mail.mrrobi.tech'; //smtp host name
 		$config['smtp_port'] = '465'; //smtp port number
 		$config['smtp_user'] = $from_email;
-		$config['smtp_pass'] = '********'; //$from_email password
+		$config['smtp_pass'] = 'joya171023&love'; //$from_email password
 		$config['mailtype'] = 'html';
 		$config['charset'] = 'iso-8859-1';
 		$config['wordwrap'] = TRUE;
@@ -482,7 +496,7 @@ class User_model extends CI_Model {
 		$this->email->initialize($config);
 		
 		//send mail
-		$this->email->from($from_email, 'Mydomain');
+		$this->email->from($from_email, 'Beta PC');
 		$this->email->to($to_email);
 		$this->email->subject($subject);
 		$this->email->message($message);
@@ -494,8 +508,10 @@ class User_model extends CI_Model {
 	{
 		$data = array('status' => 1);
 		$this->db->where('md5(email)', $key);
-		return $this->db->update('user', $data);
-	}
+		return $this->db->update('admin_user', $data);
+    }
+    
+
 
 }
 ?>

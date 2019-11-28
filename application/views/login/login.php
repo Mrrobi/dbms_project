@@ -1,69 +1,76 @@
 <?php echo $header ?>
-    <body>
-        <div class="container">
-            <section>				
-                <div id="container_demo" >
-                    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
-                    <a class="hiddenanchor" id="toregister"></a>
-                    <a class="hiddenanchor" id="tologin"></a>
-                    <div id="wrapper">
-                        <div id="login" class="animate form">
-                            <form  action="welcome/auth" method='POST' autocomplete="on"> 
-                                <h1>Sign in</h1> 
-                                <p> 
-                                    <label for="email" class="yourmail" data-icon="u" > Your email </label>
-                                    <input id="username" name="email" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
-                                </p>
-                                <p> 
-                                    <label for="pass" class="youpasswd" data-icon="p"> Your password </label>
-                                    <input id="password" name="pass" required="required" type="password" placeholder="eg. X8df!90EO" /> 
-                                </p>
-                                <!-- <p class="keeplogin"> 
-									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
-									<label for="loginkeeping">Keep me logged in</label>
-								</p> -->
-                                <p class="login button"> 
-                                    <input type="submit" value="Sign In" /> 
-								</p>
-                                <p class="change_link">
-									Not have an account ?
-									<a href="#toregister" class="to_register">Sign Up</a>
-								</p>
-                            </form>
-                        </div>
+<body>
 
-                        <div id="register" class="animate form">
-                            <form  action="welcome/regi" autocomplete="on" method="POST"> 
-                                <h1> Sign up </h1> 
-                                <p> 
-                                    <label for="name" class="uname" data-icon="u">Your name</label>
-                                    <input id="usernamesignup" name="name" required="required" type="text" placeholder="mysuperusername690" />
-                                </p>
-                                <p> 
-                                    <label for="email" class="youmail" data-icon="e" > Your email</label>
-                                    <input id="emailsignup" name="email" required="required" type="email" placeholder="mysupermail@mail.com"/> 
-                                </p>
-                                <p> 
-                                    <label for="pass" class="youpasswd" data-icon="p">Your password </label>
-                                    <input id="passwordsignup" name="pass" required="required" type="password" placeholder="eg. X8df!90EO"/>
-                                </p>
-                                <p> 
-                                    <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
-                                    <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
-                                </p>
-                                <p class="signin button"> 
-									<input type="submit" value="Sign up"/> 
-								</p>
-                                <p class="change_link">  
-									Already have an account ?
-									<a href="#tologin" class="to_register"> Go and Sign in </a>
-								</p>
-                            </form>
-                        </div>
-						
-                    </div>
-                </div>  
-            </section>
-        </div>
-    </body>
-</html>
+<header><?php echo $this->session->userdata('response'); ?></header>
+		<!-- start: page -->
+		<section class="body-sign">
+			<div class="center-sign">
+				<a href="<?php echo base_url() ?>" class="logo float-left">
+					<img src="<?php echo base_url() ?>assets/img/logo.png" height="54" alt="Porto Admin" />
+				</a>
+
+				<div class="panel card-sign">
+					<div class="card-title-sign mt-3 text-right">
+						<h2 class="title text-uppercase font-weight-bold m-0"><i class="fas fa-user mr-1"></i> Sign In</h2>
+					</div>
+					<div class="card-body">
+						<form action="<?php echo base_url()?>welcome/auth" method="post">
+							<div class="form-group mb-3">
+								<label>Username</label>
+								<div class="input-group">
+									<input name="email" type="text" class="form-control form-control-lg" />
+									<span class="input-group-append">
+										<span class="input-group-text">
+											<i class="fas fa-user"></i>
+										</span>
+									</span>
+								</div>
+							</div>
+
+							<div class="form-group mb-3">
+								<div class="clearfix">
+									<label class="float-left">Password</label>
+									<!-- <a href="pages-recover-password.html" class="float-right">Lost Password?</a> -->
+								</div>
+								<div class="input-group">
+									<input name="pass" type="password" class="form-control form-control-lg" />
+									<span class="input-group-append">
+										<span class="input-group-text">
+											<i class="fas fa-lock"></i>
+										</span>
+									</span>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-8">
+									<!-- <div class="checkbox-custom checkbox-default">
+										<input id="RememberMe" name="rememberme" type="checkbox"/>
+										<label for="RememberMe">Remember Me</label>
+									</div> -->
+								</div>
+								<div class="col-sm-4 text-right">
+									<button type="submit" class="btn btn-primary mt-2">Sign In</button>
+								</div>
+							</div>
+
+							<!-- <span class="mt-3 mb-3 line-thru text-center text-uppercase">
+								<span>or</span>
+							</span>
+
+							<div class="mb-1 text-center">
+								<a class="btn btn-facebook mb-3 ml-1 mr-1" href="#">Connect with <i class="fab fa-facebook-f"></i></a>
+								<a class="btn btn-twitter mb-3 ml-1 mr-1" href="#">Connect with <i class="fab fa-twitter"></i></a>
+							</div> -->
+
+							<p class="text-center">Don't have an account yet? <a href="<?php echo base_url()?>welcome/regi">Sign Up</a></p>
+
+						</form>
+					</div>
+				</div>
+
+				<p class="text-center text-muted mt-3 mb-3">&copy; Copyright 2019. All Rights Reserved.</p>
+			</div>
+		</section>
+		<!-- end: page -->
+<?php echo $footer ?>

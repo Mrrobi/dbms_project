@@ -137,7 +137,7 @@
                                 <?php if($this->session->userdata("logged_in")!=true) { ?>
                                     <li><a href="<?php echo $baseurl ?>logSign" class="text-uppercase">Signin</a>
                                     </li>
-									<li><a href="<?php echo $baseurl ?>welcome/register" class="text-uppercase">Signup</a>
+									<li><a href="<?php echo $baseurl ?>welcome/regi" class="text-uppercase">Signup</a>
                                     </li>
 									<?php }else{?>
                                 <li><a href="<?php echo $baseurl ?>welcome\ses_clear" class="text-uppercase"><i
@@ -249,3 +249,4 @@
         <!-- /container -->
     </div>
     <!-- /NAVIGATION -->
+    <?php echo $this->session->flashdata('msg'); ?>

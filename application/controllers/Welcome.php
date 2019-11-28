@@ -25,7 +25,7 @@ class Welcome extends CI_Controller {
         $this->load->model('User_model');
         //$this->load->helper('file');
         $this->load->helper('url','sslc');
-        // $this->load->library('email');
+    	 $this->load->library('email');
         //$this->load->helper('url_helper');
 	}
 
@@ -54,7 +54,7 @@ class Welcome extends CI_Controller {
 		$data['baseurl'] = $this->config->item('base_url');
 		 $data['header'] = $this->load->view('login/header', $data, TRUE);
 		// $data['products'] = $this->User_model->getproduct();
-		//$data['footer'] = $this->load->view('login/footer', $data, TRUE);
+		$data['footer'] = $this->load->view('login/footer', $data, TRUE);
 		$this->load->view('login/login',$data);
 	}
 
@@ -64,23 +64,186 @@ class Welcome extends CI_Controller {
 
 	public function regi()
 	{
+		$data['baseurl'] = $this->config->item('base_url');
+		$data['header'] = $this->load->view('login/header', $data, TRUE);
+		$data['footer'] = $this->load->view('login/footer', $data, TRUE);
+		$this->load->helper(array('form', 'url'));
 
-		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		$charactersLength = strlen($characters);
-		$randomString = '';
-		for ($i = 0; $i < 7; $i++) {
-			$randomString .= $characters[rand(0, $charactersLength - 1)];
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('fname', 'First Name', 'trim|required|alpha|min_length[3]|max_length[30]');
+		$this->form_validation->set_rules('lname', 'Last Name', 'trim|required|alpha|min_length[3]|max_length[30]');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
+		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+
+			$this->load->view('login/signup',$data);
+			
+			
+			
 		}
-        //echo $randomString;
-		$data = array(
-			'user_name'=>  $randomString,
-			'name'=> $this->input->POST('name'),
-			'email'=> $this->input->POST('email'),
-			'password'=> $this->input->POST('pass')
-		);
-		$this->User_model->registration($data);
-		redirect(base_url().logSign);
+		else
+		{
+			// echo 'success';
+			$this->data = array(    //$data is a global variable
+			'user_name' => md5($_POST['email']),
+			'first_name' => $_POST['fname'],
+			'last_name' => $_POST['lname'],
+			'email' => $_POST['email'],
+			'password' => md5($_POST['password']),
+			'hash' => md5(rand(0, 1000))
+			);
+			$this->User_model->insert_record($this->data);
+			$this->send_confirmation();
+		}
+
+
+		//set validation rules
+		// $this->form_validation->set_rules('username', 'Username', 'trim|required');
+		// $this->form_validation->set_rules('password', 'Password', 'trim|required');
+		// $this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
+		// $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		// $this->form_validation->set_rules('fname', 'First Name', 'trim|required|alpha|min_length[3]|max_length[30]');
+		// $this->form_validation->set_rules('lname', 'Last Name', 'trim|required|alpha|min_length[3]|max_length[30]');
+		// $this->form_validation->set_rules('email', 'Email ID', 'trim|required|valid_email|is_unique[user.email]');
+		// $this->form_validation->set_rules('password', 'Password', 'trim|required|md5');
+		// $this->form_validation->set_rules('passconf', 'Confirm Password', 'trim|required|matches[password]|md5');
+		
+		//validate form input
+		// if ($this->form_validation->run() == FALSE)
+        // {
+		// 	// fails
+		// 	echo 'error';
+		// 	$this->load->view('login/signup',$data);
+        // }
+		// else
+		// {
+		// 	//insert the user registration details into database
+		// 	$this->dat = array(
+		// 		'fname' => $this->input->post('fname'),
+		// 		'lname' => $this->input->post('lname'),
+		// 		'email' => $this->input->post('email'),
+		// 		'password' => $this->input->post('password'),
+		// 	);
+			
+		// 	// insert form data into database
+		// 	if ($this->User_model->insert_record($this->dat))
+		// 	{
+		// 		// send email
+		// 		if ($this->User_model->sendEmail($this->input->post('email')))
+		// 		{
+		// 			// successfully sent mail
+		// 			$this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully Registered! Please confirm the mail sent to your Email-ID!!!</div>');
+		// 			redirect(base_url().'welcome/register');
+		// 		}
+		// 		else
+		// 		{
+		// 			// error
+		// 			$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
+		// 			redirect(base_url().'welcome/register');
+		// 		}
+		// 	}
+		// 	else
+		// 	{
+		// 		// error
+		// 		$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
+		// 		redirect(base_url().'welcome/register');
+		// 	}
+		// }
+		
 	}
+
+	function send_confirmation() {
+		$this->load->library('email');  	//load email library
+		$this->email->from('robi@mrrobi.tech', 'Beta Pc'); //sender's email
+		$address = $_POST['email'];	//receiver's email
+		$subject="Welcome to Beta Pc!";	//subject
+		$message= /*-----------email body starts-----------*/
+		  'Thanks for signing up, '.$_POST['fname'].'!
+		
+		  Your account has been created. 
+		  Here are your login details.
+		  -------------------------------------------------
+		  Email   : ' . $_POST['email'] . '
+		  Password: ' . $_POST['password'] . '
+		  -------------------------------------------------
+						  
+		  Please click this link to activate your account:
+			  
+		  ' . base_url() . 'welcome/verify?' . 
+		  'email=' . $_POST['email'] . '&hash=' . $this->data['hash'] ;
+		  /*-----------email body ends-----------*/		      
+		$this->email->to($address);
+		$this->email->subject($subject);
+		$this->email->message($message);
+		
+		if ($this->email->send())
+			{
+				// successfully sent mail
+				$this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully Registered! Please confirm the mail sent to your Email-ID!!!</div>');
+				redirect(base_url().'welcome/regi');
+			}
+			else
+			{
+				// error
+				$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
+				redirect(base_url().'welcome/regi');
+			}
+			
+		// echo 'email send';
+	  }
+
+	function verify() {
+		//   echo $_GET['email'];
+		//   echo $_GET['hash'].'\n';
+		$result = $this->User_model->get_hash_value($_GET['email']); //get the hash value which belongs to given email from database
+		// echo $result[0]->hash;	
+		if($result){ 
+			if($result[0]->hash==$_GET['hash']){  //check whether the input hash value matches the hash value retrieved from the database
+				$this->User_model->verify_user($_GET['email']); //update the status of the user as verified
+				/*---Now you can redirect the user to whatever page you want---*/
+				//$data = $this->User_model->getData('users');
+				$result = $this->User_model->get_hash_value($_GET['email']);		
+				//Session push
+					$newdata = array(
+						'user' => $result[0]->user_name,
+						'name'  => $result[0]->last_name,
+						'email'     => $result[0]->email,
+						'logged_in' => TRUE,
+						'role' => $result[0]->role,
+						'isverified' => $result[0]->is_verified,
+						'build_table' => ''
+					);
+					$this->session->set_userdata($newdata);
+					
+					if($result[0]->role == '1'){
+						redirect(base_url() . 'ad');
+					}else{
+						
+						$this->session->set_flashdata('msg','<div class="alert alert-success text-center">Congratulations!! Account Verfied ..</div>');
+						
+						redirect(base_url());
+					}
+				}
+			}
+		}
+
+		// function verify($hash=NULL)
+		// {
+		// 	if ($this->User_model->verifyEmailID($hash))
+		// 	{
+		// 		$this->session->set_flashdata('verify_msg','<div class="alert alert-success text-center">Your Email Address is successfully verified! Please login to access your account!</div>');
+		// 		redirect('welcome/register');
+		// 	}
+		// 	else
+		// 	{
+		// 		$this->session->set_flashdata('verify_msg','<div class="alert alert-danger text-center">Sorry! There is error verifying your Email Address!</div>');
+		// 		redirect('welcome/register');
+		// 	}
+		// }
 
 	//Logout and flush session data....
 	public function ses_clear(){
@@ -95,7 +258,7 @@ class Welcome extends CI_Controller {
 
 		$log = array(
 			'email' =>$this->input->POST('email'),
-			'pass' => $this->input->POST('pass')
+			'pass' => md5($this->input->POST('pass'))
 		);
 
 		$data = $this->User_model->getData('admin_user');
@@ -105,10 +268,12 @@ class Welcome extends CI_Controller {
 				if($user->password=== $log['pass']){
 					//Session push
 					$newdata = array(
-						'name'  => $user->user_name,
+						'user' => $user->user_name,
+						'name'  => $user->last_name,
 						'email'     => $user->email,
 						'logged_in' => TRUE,
 						'role' => $user->role,
+						'isverified' => $user->is_verified,
 						'build_table' => ''
 					);
 					 $this->session->set_userdata($newdata);
@@ -116,14 +281,17 @@ class Welcome extends CI_Controller {
 					if($user->role == '1'){
 						redirect(base_url() . 'ad');
 					}else{
+						if($user->is_verified==0){
+							$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Please!! Verify your account ...</div>');
+						}
 						redirect(base_url());
 					}
 				}
 				else{
-					echo "error";
+					echo md5($this->input->POST('pass'));
 				}
 			}else{
-				echo "error";
+				echo md5($this->input->POST('pass'));
 			}
 		}
 	}
@@ -208,28 +376,33 @@ class Welcome extends CI_Controller {
 
 	public function adCart($str,$id){
 
-		if($this->session->userdata("logged_in")==true){
-			$temp = $this->User_model->getproductsingle($str,$id);
-			//$this->session->set_userdata('prev',$_SERVER['HTTP_REFERER']);
-			foreach($temp as $p){
+		if($this->session->userdata("logged_in")==true ){
+			if($this->session->userdata('isverified')==1){
+				$temp = $this->User_model->getproductsingle($str,$id);
+				//$this->session->set_userdata('prev',$_SERVER['HTTP_REFERER']);
+				foreach($temp as $p){
 
-				$data = array(
-					'user_name' => $this->session->userdata('name'),
-					'item_id' => $p->ID,
-					'item_name' => $p->name,
-					'item_price' => $p->price,
-					'type' => $str,
-					'isCheck' => '0'
-				);
+					$data = array(
+						'user_name' => $this->session->userdata('user'),
+						'item_id' => $p->ID,
+						'item_name' => $p->name,
+						'item_price' => $p->price,
+						'type' => $str,
+						'isCheck' => '0'
+					);
 
-			}
-			$temp = $this->User_model->adCart($data);
+				}
+				$temp = $this->User_model->adCart($data);
 
-			if($temp){
-				$this->session->set_flashdata('response',"Added To Cart");
-				redirect($_SERVER['HTTP_REFERER'],'refresh');
+				if($temp){
+					$this->session->set_flashdata('response',"Added To Cart");
+					redirect($_SERVER['HTTP_REFERER'],'refresh');
+				}else{
+					$this->session->set_flashdata('response',"Cant Add Cart");
+					redirect($_SERVER['HTTP_REFERER'],'refresh');
+				}
 			}else{
-				$this->session->set_flashdata('response',"Cant Add Cart");
+				$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Please!! Verify First .. </div>');
 				redirect($_SERVER['HTTP_REFERER'],'refresh');
 			}
 		}else{
