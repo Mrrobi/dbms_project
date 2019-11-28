@@ -32,7 +32,7 @@
 							<li><a href="<?php echo $baseurl. "history" ?>"><i class="fas fa-history"></i> History</a></li>
 							<li><a href="#"><i class="far fa-smile-beam"></i> My Wishlist</a></li>
 							<li><a href="#"><i class="fas fa-exchange-alt"></i> Compare</a></li>
-							<li><a href="#"><i class="fas fa-credit-card"></i> Checkout</a></li>
+							<li><a href="https://mrrobi.tech/checkout"><i class="fas fa-credit-card"></i> Checkout</a></li>
 							<?php if($this->session->userdata("logged_in")!=true) { ?>
                                     <li><a href="<?php echo $baseurl ?>logSign" class="text-uppercase"><i class="fas fa-sign-in-alt"></i> Signin</a>
                                     </li>

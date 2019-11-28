@@ -64,6 +64,21 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<script src="https://kit.fontawesome.com/d6062a4230.js" crossorigin="anonymous"></script>
+
+		<style>
+		a.isDisabled {
+			color: currentColor;
+			cursor: not-allowed;
+			opacity: 0.5;
+			text-decoration: none;
+		}
+		button.isDisabled {
+			color: currentColor;
+			cursor: not-allowed;
+			opacity: 0.5;
+			text-decoration: none;
+		}
+		</style>
 </head>
 <body>
 	<!-- HEADER -->
@@ -198,8 +213,8 @@
 										<?php } ?>
 									</div>
 									<div class="shopping-cart-btns">
-										<button class="main-btn">View Cart</button>
-										<button class="primary-btn" onclick="location.href='<?php echo $baseurl?>checkout'">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+										<!-- <button class="main-btn">View Cart</button> -->
+										<button class="primary-btn <?php if($count ==0) echo 'isDisabled'; ?>" onclick="location.href='<?php echo $baseurl?>checkout'">Checkout <i class="fa fa-arrow-circle-right"></i></button>
 									</div>
 								</div>
 							</div>

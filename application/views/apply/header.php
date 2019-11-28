@@ -78,7 +78,14 @@
 		<script src="https://kit.fontawesome.com/d6062a4230.js" crossorigin="anonymous"></script>
 
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+		<style>
+		a.isDisabled {
+			color: currentColor;
+			cursor: not-allowed;
+			opacity: 0.5;
+			text-decoration: none;
+		}
+		</style>
 	</head>
 	<body>
 	
