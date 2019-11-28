@@ -65,6 +65,17 @@ class User_model extends CI_Model {
         $this->db->delete($url);
     }
 
+    public function delete($str){
+
+        $this->db->set($str,'');
+        $this->db->where('user_name',$_SESSION['name']);
+        $this->db->where('id',$_SESSION['build_table']);
+        $this->db->update('build');
+
+        
+
+    }
+
     public function adCart($data){
 
         // $this->db->select('*');
@@ -130,7 +141,86 @@ class User_model extends CI_Model {
     }
 
     public function getproduct($str){
-        $this->db->select('*');
+        
+
+        switch($str){
+            case 'cpu':
+                
+                if($this->session->flashdata('edit')){
+                    $this->db->select('*');
+                    $this->db->where('user_name',$_SESSION['name']);
+                    $this->db->where('id',$_SESSION['build_table']);
+                    $this->db->from('build');
+                    $q1 = $this->db->get();
+                    $t1 = $q1->result();
+
+                    if($t1[0]->motherboard!=null){
+                        $this->db->select('m.socket as m_s');
+                        $this->db->where('b.user_name',$_SESSION['name']);
+                        $this->db->where('b.id',$_SESSION['build_table']);
+                        $this->db->from('build as b');
+                        $this->db->join('motherboard as m' , 'm.id=b.motherboard');
+                        $q2 = $this->db->get();
+                        $t2 = $q2->result();
+                        $this->db->select('*');
+                        $this->db->where('socket',$t2[0]->m_s);
+                    }
+                }
+            break;
+            case 'motherboard':
+                if($this->session->flashdata('edit')){
+                    $this->db->select('*');
+                    $this->db->where('user_name',$_SESSION['name']);
+                    $this->db->where('id',$_SESSION['build_table']);
+                    $this->db->from('build');
+                    $q1 = $this->db->get();
+                    $t1 = $q1->result();
+
+                    if($t1[0]->cpu!=null){
+                        $this->db->select('c.socket as c_s');
+                        $this->db->where('b.user_name',$_SESSION['name']);
+                        $this->db->where('b.id',$_SESSION['build_table']);
+                        $this->db->from('build as b');
+                        $this->db->join('cpu as c' , 'c.id=b.cpu');
+                        $q2 = $this->db->get();
+                        $t2 = $q2->result();
+                        $this->db->select('*');
+                        $this->db->where('socket',$t2[0]->c_s);
+                    }
+                }
+            break;
+            case 'ram':
+                if($this->session->flashdata('edit')){
+                    $this->db->select('*');
+                    $this->db->where('user_name',$_SESSION['name']);
+                    $this->db->where('id',$_SESSION['build_table']);
+                    $this->db->from('build');
+                    $q1 = $this->db->get();
+                    $t1 = $q1->result();
+
+                    if($t1[0]->motherboard!=null){
+                        $this->db->select('m.bus as max');
+                        $this->db->select('m.min_bus as min');
+                        $this->db->where('b.user_name',$_SESSION['name']);
+                        $this->db->where('b.id',$_SESSION['build_table']);
+                        $this->db->from('build as b');
+                        $this->db->join('motherboard as m' , 'm.id=b.motherboard');
+                        $q2 = $this->db->get();
+                        $t2 = $q2->result();
+                        $this->db->select('*');
+                        echo $t2[0]->max . " " . $t2[0]->min;
+                        $this->db->where('bus<=',$t2[0]->max);
+                        $this->db->where('bus>=',$t2[0]->min);
+                    }
+                }
+            break;
+            case 'gpu':
+                if(isset($_SESSION['pci_slot'])){
+                    $this->db->where('pci_slot',$_SESSION['pci_slot']);
+                }
+            break;
+        }
+
         $this->db->from($str);
         $query = $this->db->get();
         return $query->result();
@@ -363,5 +453,49 @@ class User_model extends CI_Model {
         //echo $t;
         return $t;
     }
+
+
+
+    //insert into user table
+	function insertUser($data)
+    {
+		return $this->db->insert('user', $data);
+	}
+	
+	//send verification email to user's email id
+	function sendEmail($to_email)
+	{
+		$from_email = 'team@mydomain.com';
+		$subject = 'Verify Your Email Address';
+		$message = 'Dear User,<br /><br />Please click on the below activation link to verify your email address.<br /><br /> http://www.mydomain.com/user/verify/' . md5($to_email) . '<br /><br /><br />Thanks<br />Mydomain Team';
+		
+		//configure email settings
+		$config['protocol'] = 'smtp';
+		$config['smtp_host'] = 'ssl://smtp.mydomain.com'; //smtp host name
+		$config['smtp_port'] = '465'; //smtp port number
+		$config['smtp_user'] = $from_email;
+		$config['smtp_pass'] = '********'; //$from_email password
+		$config['mailtype'] = 'html';
+		$config['charset'] = 'iso-8859-1';
+		$config['wordwrap'] = TRUE;
+		$config['newline'] = "\r\n"; //use double quotes
+		$this->email->initialize($config);
+		
+		//send mail
+		$this->email->from($from_email, 'Mydomain');
+		$this->email->to($to_email);
+		$this->email->subject($subject);
+		$this->email->message($message);
+		return $this->email->send();
+	}
+	
+	//activate user account
+	function verifyEmailID($key)
+	{
+		$data = array('status' => 1);
+		$this->db->where('md5(email)', $key);
+		return $this->db->update('user', $data);
+	}
+
 }
 ?>

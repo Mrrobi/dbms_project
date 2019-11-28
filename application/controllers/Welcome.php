@@ -369,7 +369,7 @@ class Welcome extends CI_Controller {
 
 	public function select($str){
 		$data['baseurl'] = $this->config->item('base_url');
-		
+		$this->session->set_flashdata('edit',true);
 		$data['products'] = $this->User_model->getproduct($str);
 		$data['cart'] = $this->User_model->getCart();
 		$data['pagename'] = $str;
@@ -378,6 +378,13 @@ class Welcome extends CI_Controller {
 		$this->load->view('pc_builder/select',$data);
 	}
 
+	public function delete($str){
+
+		$this->User_model->delete($str);
+
+		redirect(base_url()."pcbuilder","refresh");
+
+	}
 
 
 
@@ -1448,7 +1455,6 @@ class Welcome extends CI_Controller {
 		}
 	}
 	//---------------------------------------ssl commerz--------------------------------------------------//
-
 }
 
 
