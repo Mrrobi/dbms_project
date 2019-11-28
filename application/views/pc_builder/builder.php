@@ -54,7 +54,7 @@
                                 <td class="text-right"><a class="btn btn-info" href='<?php echo base_url()?>welcome/select/cpu'>Change</a></td>
 								<td class="text-right"><a class="btn btn-danger"
                                         href='<?php echo base_url()?>welcome/delete/cpu/'><i
-                                            class="fa fa-trash"></i>Delete</a></td>
+                                            class="fa fa-trash"></i> Delete</a></td>
 								<?php }?>
                                 <?php if($cpu==null){?>
 									<td class="text-right"><a class="cancel-btn"
@@ -78,7 +78,7 @@
                                 <td class="text-right"><a class="btn btn-info" href='<?php echo base_url()?>welcome/select/motherboard'>Change</a></td>
                                 <td class="text-right"><a class="btn btn-danger"
                                         href='<?php echo base_url()?>welcome/delete/motherboard/'><i
-                                            class="fa fa-trash"></i>Delete</a></td>
+                                            class="fa fa-trash"></i> Delete</a></td>
 								<?php }?>
 								<?php if($motherboard==null){?>
 									<td class="text-right"><a class="cancel-btn"
@@ -99,7 +99,7 @@
                                 <td class="text-right"><a class="btn btn-info" href='<?php echo base_url()?>welcome/select/ram'>Change</a></td>
 								<td class="text-right"><a class="btn btn-danger"
                                         href='<?php echo base_url()?>welcome/delete/ram/'><i
-                                            class="fa fa-trash"></i>Delete</a></td>
+                                            class="fa fa-trash"></i> Delete</a></td>
 								<?php } ?>
                                 <?php if($ram==null){?>
 									<td class="text-right"><a class="cancel-btn"
@@ -120,7 +120,7 @@
                                 <td class="text-right"><a class="btn btn-info" href='<?php echo base_url()?>welcome/select/ssd'>Change</a></td>
                                 <td class="text-right"><a class="btn btn-danger"
                                         href='<?php echo base_url()?>welcome/delete/ssd/'><i
-                                            class="fa fa-trash"></i>Delete</a></td>
+                                            class="fa fa-trash"></i> Delete</a></td>
 								<?php }?>
                                 <?php if($ssd==null){?>
                                 <td class="text-right"><a class="cancel-btn"
@@ -142,7 +142,7 @@
                                 <td class="text-right"><a class="btn btn-info" href='<?php echo base_url()?>welcome/select/gpu'>Change</a></td>
                                 <td class="text-right"><a class="btn btn-danger"
                                         href='<?php echo base_url()?>welcome/delete/gpu/'><i
-                                            class="fa fa-trash"></i>Delete</a></td>
+                                            class="fa fa-trash"></i> Delete</a></td>
 								<?php }?>
                                 <?php if($gpu==null){?>
                                 <td class="text-right"><a class="cancel-btn"
@@ -164,7 +164,7 @@
                                 <td class="text-right"><a class="btn btn-info" href='<?php echo base_url()?>welcome/select/hdd'>Change</a></td>
                                 <td class="text-right"><a class="btn btn-danger"
                                         href='<?php echo base_url()?>welcome/delete/hdd/'><i
-                                            class="fa fa-trash"></i>Delete</a></td>
+                                            class="fa fa-trash"></i> Delete</a></td>
 								<?php }?>
                                 <?php if($hdd==null){?>
                                 <td class="text-right"><a class="cancel-btn"
@@ -186,7 +186,7 @@
                                 <td class="text-right"><a class="btn btn-info" href='<?php echo base_url()?>welcome/select/casing'>Change</a></td>
                                 <td class="text-right"><a class="btn btn-danger"
                                         href='<?php echo base_url()?>welcome/delete/casing/'><i
-                                            class="fa fa-trash"></i>Delete</a></td>
+                                            class="fa fa-trash"></i> Delete</a></td>
 								<?php }?>
                                 <?php if($casing==null){?>
                                 <td class="text-right"><a class="cancel-btn"
@@ -207,7 +207,7 @@
                                 <td class="text-right"><a class="btn btn-info" href='<?php echo base_url()?>welcome/select/psu'>Change</a></td>
                                 <td class="text-right"><a class="btn btn-danger"
                                         href='<?php echo base_url()?>welcome/delete/psu/'><i
-                                            class="fa fa-trash"></i>Delete</a></td>
+                                            class="fa fa-trash"></i> Delete</a></td>
 								<?php }?>
                                 <?php if($psu==null){?>
                                 <td class="text-right"><a class="cancel-btn"
