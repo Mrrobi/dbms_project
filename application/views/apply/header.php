@@ -7,7 +7,31 @@
 		<meta charset="UTF-8">
 
 		<title>PC BUILDER | Admin</title>
-		
+		<meta name="description" content="Your PC our responsibility"/>
+    <meta name="keywords" content="Beta PC"/>
+    <meta name="author" content="Beta PC"/>
+
+
+    <!-- facebook open graph starts from here, if you don't need then delete open graph related  -->
+    <meta property="og:title" content="Beta PC"/>
+    <meta property="og:url" content="www.mrrobi.tech/"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="og:site_name" content="Beta PC"/>
+    <!--meta property="fb:admins" content="" /-->  <!-- use this if you have  -->
+    <meta property="og:type" content="website"/> <!-- 'article' for single page  -->
+    <meta property="og:image"
+        content="<?php echo $baseurl;?>assets/img/favicon.ico"/> <!-- when you post this page url in facebook , this image will be shown -->
+    <!-- facebook open graph ends here -->
+
+    <!-- desktop bookmark -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="<?php echo $baseurl;?>assets/img/favicon.ico">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- icons & favicons -->
+    <link rel="shortcut icon" type="image/x-icon"  href="<?php echo $baseurl;?>assets/img/favicon.ico"/>  <!-- this icon shows in browser toolbar -->
+    <link rel="icon" type="image/x-icon" href="<?php echo $baseurl;?>assets/img/favicon.ico"/> <!-- this icon shows in browser toolbar -->
+
 <!-- Mobile Metas -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 

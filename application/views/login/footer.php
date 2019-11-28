@@ -1,3 +1,4 @@
+		
 		<!-- Vendor -->
 		<script src="<?php echo base_url() ?>dash/vendor/jquery/jquery.js"></script>		
 		<script src="<?php echo base_url() ?>dash/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>		

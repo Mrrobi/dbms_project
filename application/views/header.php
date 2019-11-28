@@ -7,7 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>PC Builder: Your PC our responsibility</title>
+    <title>Beta PC: Your PC our responsibility</title>
+
+    <meta name="description" content="Your PC our responsibility"/>
+    <meta name="keywords" content="Beta PC"/>
+    <meta name="author" content="Beta PC"/>
+
+
+    <!-- facebook open graph starts from here, if you don't need then delete open graph related  -->
+    <meta property="og:title" content="Beta PC"/>
+    <meta property="og:url" content="www.mrrobi.tech/"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="og:site_name" content="Beta PC"/>
+    <!--meta property="fb:admins" content="" /-->  <!-- use this if you have  -->
+    <meta property="og:type" content="website"/> <!-- 'article' for single page  -->
+    <meta property="og:image"
+        content="<?php echo $baseurl;?>assets/img/favicon.ico"/> <!-- when you post this page url in facebook , this image will be shown -->
+    <!-- facebook open graph ends here -->
+
+    <!-- desktop bookmark -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="<?php echo $baseurl;?>assets/img/favicon.ico">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- icons & favicons -->
+    <link rel="shortcut icon" type="image/x-icon"  href="<?php echo $baseurl;?>assets/img/favicon.ico"/>  <!-- this icon shows in browser toolbar -->
+    <link rel="icon" type="image/x-icon" href="<?php echo $baseurl;?>assets/img/favicon.ico"/> <!-- this icon shows in browser toolbar -->
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
