@@ -15,6 +15,15 @@
 </div>
 <!-- /BREADCRUMB -->
 
+<?php 
+
+$hits = $products[0]->hits;
+$hits++;
+$this->db->set('hits',$hits);
+$this->db->where('id',$products[0]->ID);
+$this->db->update($pagename);
+
+?>
 
 <!-- section -->
 <div class="section">
@@ -78,10 +87,6 @@
 							
 
 							<div class="product-btns">
-								<div class="qty-input">
-									<span class="text-uppercase">QTY: </span>
-									<input class="input" type="number">
-                                </div>
                                 
 								<?php if($this->session->userdata('role')=='0') { ?>
                             <button class="primary-btn add-to-cart" onclick="location.href='<?php echo base_url()?>cart/<?php echo $pagename?>/<?php echo $p->ID ?>'"><i class="fa fa-shopping-cart"></i> Add to Cart</button>

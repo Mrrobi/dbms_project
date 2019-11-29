@@ -380,6 +380,13 @@ class Welcome extends CI_Controller {
 			if($this->session->userdata('isverified')==1){
 				$temp = $this->User_model->getproductsingle($str,$id);
 				//$this->session->set_userdata('prev',$_SERVER['HTTP_REFERER']);
+
+				$hits = $temp[0]->hits;
+				$hits++;
+				$this->db->set('hits',$hits);
+				$this->db->where('id',$temp[0]->ID);
+				$this->db->update($str);
+
 				foreach($temp as $p){
 
 					$data = array(
@@ -435,7 +442,17 @@ class Welcome extends CI_Controller {
 
 	public function checkadd($total,$key){
 
-		
+		$cart = $this->User_model->getCart();
+
+		foreach($cart as $c){
+			$item = $this->User_model->getproductsingle($c->type,$c->item_id);
+			$quantity = $item[0]->quantity;
+			$quantity--;
+			$this->db->set('quantity',$quantity);
+			$this->db->where('id',$item[0]->ID);
+			$this->db->update($c->type);
+		}
+
 		$this->User_model->checkadd($total);
 		$this->User_model->paid($key);
 		$check_id = $this->User_model->getCheckId();

@@ -17,7 +17,12 @@
 
 
 
-
+<!-- section -->
+<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
 <!-- STORE -->
 <div id="store">
     <!-- row -->
@@ -55,5 +60,7 @@
         <?php } ?>
     </div>
 </div>
-
+</div>
+</div>
+</div>
 <?php echo $footer; ?>

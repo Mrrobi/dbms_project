@@ -22,7 +22,7 @@
     <!--meta property="fb:admins" content="" /-->  <!-- use this if you have  -->
     <meta property="og:type" content="website"/> <!-- 'article' for single page  -->
     <meta property="og:image"
-        content="<?php echo $baseurl;?>assets/img/favicon.ico"/> <!-- when you post this page url in facebook , this image will be shown -->
+        content="<?php echo $baseurl;?>assets/img/logo.png"/> <!-- when you post this page url in facebook , this image will be shown -->
     <!-- facebook open graph ends here -->
 
     <!-- desktop bookmark -->
@@ -254,8 +254,21 @@
         <!-- container -->
         <div class="container">
             <div id="responsive-nav">
-                <!-- category nav -->
-
+				<!-- category nav -->
+				<div class="category-nav <?php if($this->uri->segment(1)!=null) echo 'show-on-click'?>">
+					<span class="category-header">Products <i class="fa fa-list"></i></span>
+					<ul class="category-list">
+                        <li><a href="<?php echo $baseurl ?>product/cpu">Processor  </a></li>
+                        <li><a href="<?php echo $baseurl ?>product/gpu">Graphics Card </a></li>
+                        <li><a href="<?php echo $baseurl ?>product/ram">RAM </a></li>
+                        <li><a href="<?php echo $baseurl ?>product/psu">Power Supply Unit </i></a></li>
+                        <li><a href="<?php echo $baseurl ?>product/motherboard">Motherboard </i></a></li>
+                        <li><a href="<?php echo $baseurl ?>product/hdd">Hard Disk Drive </i></a></li>
+                        <li><a href="<?php echo $baseurl ?>product/ssd">Solid State Drive </i></a></li>
+                        <li><a href="<?php echo $baseurl ?>product/casing">Casing </i></a></li>
+					</ul>
+				</div>
+				<!-- /category nav -->
 
                 <!-- menu nav -->
                 <div class="menu-nav">
@@ -263,7 +276,7 @@
                     <ul class="menu-list">
                         <li><a href="<?php echo $baseurl ?>">Home</a></li>
 
-                        <li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                        <!-- <li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
                                 aria-expanded="true">Products <i class="fa fa-caret-down"></i></a>
                             <ul class="custom-menu">
                                 <li><a href="<?php echo $baseurl ?>product/cpu">Processor</a></li>
@@ -274,9 +287,9 @@
                                 <li><a href="<?php echo $baseurl ?>product/hdd">Hard Disk Drive</a></li>
                                 <li><a href="<?php echo $baseurl ?>product/ssd">Solid State Drive</a></li>
                                 <li><a href="<?php echo $baseurl ?>product/casing">Casing</a></li>
-                                <!-- <li><a href="<?php echo $baseurl ?>cart">Checkout</a></li> -->
+                                <li><a href="<?php echo $baseurl ?>cart">Checkout</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                         <?php $this->session->set_userdata('prev',$_SERVER['REQUEST_URI']); ?>
                         <!-- <?php echo $this->session->userdata('prev') ?> -->
                         <li><a href="<?php echo $baseurl ?>pc_build">Built Your PC</a></li>

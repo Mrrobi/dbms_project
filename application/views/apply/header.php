@@ -20,7 +20,7 @@
     <!--meta property="fb:admins" content="" /-->  <!-- use this if you have  -->
     <meta property="og:type" content="website"/> <!-- 'article' for single page  -->
     <meta property="og:image"
-        content="<?php echo $baseurl;?>assets/img/favicon.ico"/> <!-- when you post this page url in facebook , this image will be shown -->
+        content="<?php echo $baseurl;?>assets/img/logo.png"/> <!-- when you post this page url in facebook , this image will be shown -->
     <!-- facebook open graph ends here -->
 
     <!-- desktop bookmark -->
