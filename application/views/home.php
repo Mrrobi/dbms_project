@@ -91,6 +91,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','cpu');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -108,11 +126,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+										for($i=1;$i<=5;$i++){
+											if($i<=$rating){
+												echo '<i class="fa fa-star"></i>';
+											}else{
+												echo '<i class="fa fa-star-o empty"></i>';
+											}
+										} 
+									?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/cpu/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
@@ -132,6 +154,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','gpu');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -149,11 +189,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+									for($i=1;$i<=5;$i++){
+										if($i<=$rating){
+											echo '<i class="fa fa-star"></i>';
+										}else{
+											echo '<i class="fa fa-star-o empty"></i>';
+										}
+									} 
+								?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/gpu/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
@@ -174,6 +218,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','motherboard');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -191,11 +253,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+									for($i=1;$i<=5;$i++){
+										if($i<=$rating){
+											echo '<i class="fa fa-star"></i>';
+										}else{
+											echo '<i class="fa fa-star-o empty"></i>';
+										}
+									} 
+								?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/motherboard/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
@@ -215,6 +281,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','ram');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -232,11 +316,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+									for($i=1;$i<=5;$i++){
+										if($i<=$rating){
+											echo '<i class="fa fa-star"></i>';
+										}else{
+											echo '<i class="fa fa-star-o empty"></i>';
+										}
+									} 
+								?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/ram/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
@@ -256,6 +344,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','hdd');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -273,11 +379,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+									for($i=1;$i<=5;$i++){
+										if($i<=$rating){
+											echo '<i class="fa fa-star"></i>';
+										}else{
+											echo '<i class="fa fa-star-o empty"></i>';
+										}
+									} 
+								?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/hdd/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
@@ -297,6 +407,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','ssd');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -314,11 +442,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+									for($i=1;$i<=5;$i++){
+										if($i<=$rating){
+											echo '<i class="fa fa-star"></i>';
+										}else{
+											echo '<i class="fa fa-star-o empty"></i>';
+										}
+									} 
+								?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/ssd/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
@@ -338,6 +470,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','psu');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -355,11 +505,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+									for($i=1;$i<=5;$i++){
+										if($i<=$rating){
+											echo '<i class="fa fa-star"></i>';
+										}else{
+											echo '<i class="fa fa-star-o empty"></i>';
+										}
+									} 
+								?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/psu/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
@@ -379,6 +533,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','casing');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -396,11 +568,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+										for($i=1;$i<=5;$i++){
+											if($i<=$rating){
+												echo '<i class="fa fa-star"></i>';
+											}else{
+												echo '<i class="fa fa-star-o empty"></i>';
+											}
+										} 
+									?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/casing/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
@@ -464,6 +640,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','cpu');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -481,11 +675,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+									for($i=1;$i<=5;$i++){
+										if($i<=$rating){
+											echo '<i class="fa fa-star"></i>';
+										}else{
+											echo '<i class="fa fa-star-o empty"></i>';
+										}
+									} 
+								?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/cpu/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
@@ -505,6 +703,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','gpu');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -522,11 +738,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+									for($i=1;$i<=5;$i++){
+										if($i<=$rating){
+											echo '<i class="fa fa-star"></i>';
+										}else{
+											echo '<i class="fa fa-star-o empty"></i>';
+										}
+									} 
+								?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/gpu/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
@@ -547,6 +767,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','motherboard');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -564,11 +802,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+									for($i=1;$i<=5;$i++){
+										if($i<=$rating){
+											echo '<i class="fa fa-star"></i>';
+										}else{
+											echo '<i class="fa fa-star-o empty"></i>';
+										}
+									} 
+								?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/motherboard/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
@@ -588,6 +830,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','ram');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -605,11 +865,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+									for($i=1;$i<=5;$i++){
+										if($i<=$rating){
+											echo '<i class="fa fa-star"></i>';
+										}else{
+											echo '<i class="fa fa-star-o empty"></i>';
+										}
+									} 
+								?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/ram/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
@@ -629,6 +893,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','hdd');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -646,11 +928,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+									for($i=1;$i<=5;$i++){
+										if($i<=$rating){
+											echo '<i class="fa fa-star"></i>';
+										}else{
+											echo '<i class="fa fa-star-o empty"></i>';
+										}
+									} 
+								?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/hdd/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
@@ -670,6 +956,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','ssd');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -687,11 +991,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+									for($i=1;$i<=5;$i++){
+										if($i<=$rating){
+											echo '<i class="fa fa-star"></i>';
+										}else{
+											echo '<i class="fa fa-star-o empty"></i>';
+										}
+									} 
+								?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/ssd/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
@@ -711,6 +1019,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','psu');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -728,11 +1054,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+									for($i=1;$i<=5;$i++){
+										if($i<=$rating){
+											echo '<i class="fa fa-star"></i>';
+										}else{
+											echo '<i class="fa fa-star-o empty"></i>';
+										}
+									} 
+								?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/psu/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
@@ -752,6 +1082,24 @@
 								$t = $this->db->get();
 								$p = $t->result();
 							?>
+							<?php 
+								$this->db->select('*');
+								$this->db->where('id',$p[0]->ID);
+								$this->db->where('type','casing');
+								$this->db->from('review');
+								$q = $this->db->get();
+								$reviews =  $q->result();
+								$rating=0;
+								$count=0;
+								foreach($reviews as $re) {
+									$rating+=$re->rating;
+									$count++;
+								}
+								if($reviews){
+									$rating = $rating/$count;
+								}
+
+							?>
 							<div class="product product-single">
 								<div class="product-thumb">
 									<div class="product-label">
@@ -769,11 +1117,15 @@
 								<div class="product-body">
 									<h3 class="product-price"><?php echo $p[0]->price.'TK' ?> <del class="product-old-price"></del></h3>
 									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o empty"></i>
+									<?php
+									for($i=1;$i<=5;$i++){
+										if($i<=$rating){
+											echo '<i class="fa fa-star"></i>';
+										}else{
+											echo '<i class="fa fa-star-o empty"></i>';
+										}
+									} 
+								?>
 									</div>
 									<h2 class="product-name"><a href="<?php echo $baseurl ?>product-page/casing/<?php echo $p[0]->ID ?>"><?php echo $p[0]->name ?></a></h2>
 									<div class="product-btns">
