@@ -42,7 +42,12 @@
                         <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
                         <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
                         <?php if($this->session->userdata('role')=='0') { ?>
-                            <button class="primary-btn add-to-cart" onclick="location.href='<?php echo base_url()?>welcome/updateTable/<?php echo $p->ID; ?>/<?php echo $pagename;?>'"><i class="fa fa-shopping-cart"></i> Add</button>
+                            <?php if($p->quantity!=0){?>
+                                <button class="primary-btn add-to-cart" onclick="location.href='<?php echo base_url()?>welcome/updateTable/<?php echo $p->ID; ?>/<?php echo $pagename;?>'"><i class="fa fa-shopping-cart"></i> Add</button>
+								<?php }else{?>
+									<button class="primary-btn add-to-cart isDisabled" onclick="location.href='<?php echo base_url()?>cart/<?php echo $pagename?>/<?php echo $p->ID ?>'"><i class="far fa-frown"></i> Sold Out</button>
+							<?php } ?>
+                            
                         <?php } ?>
                     </div>
                 </div>

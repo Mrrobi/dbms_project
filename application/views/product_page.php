@@ -25,6 +25,25 @@ $this->db->update($pagename);
 
 ?>
 
+<?php 
+	$this->db->select('*');
+	$this->db->where('id',$products[0]->ID);
+	$this->db->where('type',$pagename);
+	$this->db->from('review');
+	$q = $this->db->get();
+	$reviews =  $q->result();
+	$rating=0;
+	$count=0;
+	foreach($reviews as $re) {
+		$rating+=$re->rating;
+		$count++;
+	}
+	if($reviews){
+		$rating = $rating/$count;
+	}
+
+?>
+
 <!-- section -->
 <div class="section">
 		<!-- container -->
@@ -74,13 +93,17 @@ $this->db->update($pagename);
 							<h3 class="product-price"><?php echo $p->price.'TK' ?> <del class="product-old-price"></del></h3>
 							<div>
 								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o empty"></i>
+								<?php
+									for($i=1;$i<=5;$i++){
+										if($i<=$rating){
+											echo '<i class="fa fa-star"></i>';
+										}else{
+											echo '<i class="fa fa-star-o empty"></i>';
+										}
+									} 
+								?>
 								</div>
-								<a href="#">3 Review(s) / Add Review</a>
+								<a href="<?php echo base_url()?>review/<?php echo $p->ID.'/'.$pagename ?>"><?php echo $count; ?> Review(s) / Add Review</a>
 							</div>
 							<p><strong>Availability:</strong> <?php echo $p->quantity.' Left' ?></p>
 							<p><strong>Brand:</strong> <?php echo $p->brand ?></p>
@@ -88,9 +111,13 @@ $this->db->update($pagename);
 
 							<div class="product-btns">
                                 
-								<?php if($this->session->userdata('role')=='0') { ?>
-                            <button class="primary-btn add-to-cart" onclick="location.href='<?php echo base_url()?>cart/<?php echo $pagename?>/<?php echo $p->ID ?>'"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                        <?php } ?>
+							<?php if($this->session->userdata('role')=='0') { ?>
+								<?php if($p->quantity!=0){?>
+									<button class="primary-btn add-to-cart" onclick="location.href='<?php echo base_url()?>cart/<?php echo $pagename?>/<?php echo $p->ID ?>'"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+								<?php }else{?>
+									<button class="primary-btn add-to-cart isDisabled" onclick="location.href='<?php echo base_url()?>cart/<?php echo $pagename?>/<?php echo $p->ID ?>'"><i class="far fa-frown"></i> Sold Out</button>
+								<?php } ?>
+                        	<?php } ?>
 							</div>
 						</div>
 					</div>

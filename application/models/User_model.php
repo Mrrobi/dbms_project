@@ -262,6 +262,26 @@ class User_model extends CI_Model {
         return $query->result();
     }
 
+    public function getReviews($id,$type){
+        $this->db->select('*');
+        $this->db->where('id',$id);
+        $this->db->where('type',$type);
+        $this->db->from('review');
+        $q = $this->db->get();
+        return $q->result();
+    }
+
+    public function addReview($id,$type,$body,$rating){
+        $data = array(
+            'id' => $id,
+            'type' => $type,
+            'user_name' => $this->session->userdata('name'),
+            'body' => $body,
+            'rating' => $rating
+        );
+
+        $this->db->insert('review',$data);
+    }
 
 
 

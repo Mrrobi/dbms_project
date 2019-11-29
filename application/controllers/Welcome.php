@@ -578,6 +578,26 @@ class Welcome extends CI_Controller {
 
 
 
+	public function review($id,$type){
+		$data['baseurl'] = $this->config->item('base_url');
+		$data['cart'] = $this->User_model->getCart();
+		$data['reviews'] = '';//$this->User_model->getReviews($id,$type);
+		$data['product'] = $this->User_model->getproductsingle($type,$id);
+		$data['pagename'] = $type;
+		$data['header'] = $this->load->view('header', $data, TRUE);
+		$data['footer'] = $this->load->view('footer', $data, TRUE);
+		$this->load->view('review',$data);
+	}
+
+	public function addReview($id,$type){
+		$body = $this->input->post('review');
+		$rating = $this->input->post('rating');
+
+		$this->User_model->addReview($id,$type,$body,$rating);
+
+		redirect(base_url().'review/'.$id.'/'.$type,'refresh');
+
+	}
 	//----------------------------------------------------------------------------------------------------------------
 
 	//Admin Dashboard Controlll
