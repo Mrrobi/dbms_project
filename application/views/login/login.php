@@ -6,7 +6,7 @@
 		<section class="body-sign">
 			<div class="center-sign">
 				<a href="<?php echo base_url() ?>" class="logo float-left">
-					<img src="<?php echo base_url() ?>assets/img/logo.png" height="54" alt="Porto Admin" />
+					<img src="<?php echo base_url() ?>assets/img/logo.png" alt="Porto Admin" />
 				</a>
 
 				<div class="panel card-sign">
@@ -53,7 +53,7 @@
 									<button type="submit" class="btn btn-primary mt-2">Sign In</button>
 								</div>
 							</div>
-							<?php echo $this->session->flashdata('msg'); ?>
+							
 							<!-- <span class="mt-3 mb-3 line-thru text-center text-uppercase">
 								<span>or</span>
 							</span>
@@ -66,6 +66,7 @@
 							<p class="text-center">Don't have an account yet? <a href="<?php echo base_url()?>welcome/regi">Sign Up</a></p>
 
 						</form>
+						<?php echo $this->session->flashdata('msg'); ?>
 					</div>
 				</div>
 

@@ -257,15 +257,15 @@ class Welcome extends CI_Controller {
 	public function auth(){
 
 		$log = array(
-			'email' =>$this->input->POST('email'),
-			'pass' => md5($this->input->POST('pass'))
+			'email' => $this->input->POST('email'),
+			'pass' => $this->input->POST('pass')
 		);
 
 		$data = $this->User_model->getData('admin_user');
 
 		foreach ($data as $user) {
-			if($user->email === $log['email']){
-				if($user->password=== $log['pass']){
+			if($user->email == $log['email']){
+				if($user->password == md5($log['pass'])){
 					//Session push
 					$newdata = array(
 						'user' => $user->user_name,
@@ -278,7 +278,7 @@ class Welcome extends CI_Controller {
 					);
 					 $this->session->set_userdata($newdata);
 					 
-					if($user->role == '1'){
+					if($user->role == 1){
 						redirect(base_url() . 'ad');
 					}else{
 						if($user->is_verified==0){
@@ -288,14 +288,12 @@ class Welcome extends CI_Controller {
 					}
 				}
 				else{
-					$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Wrong Username/Password Please Try Again!!!</div>');
-					redirect(base_url().'logSign','refresh');
 				}
 			}else{
-				$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Wrong Username/Password Please Try Again!!!</div>');
-				redirect(base_url().'logSign','refresh');
 			}
 		}
+		$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Wrong Username/Password Please Try Again!!!</div>');
+		redirect(base_url().'logSign','refresh');
 	}
 
 

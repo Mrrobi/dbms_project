@@ -10,7 +10,7 @@
 		<section class="body-sign">
 			<div class="center-sign">
 				<a href="<?php echo base_url();?>" class="logo float-left">
-					<img src="<?php echo base_url() ?>assets/img/logo.png" height="54" alt="Porto Admin" />
+					<img src="<?php echo base_url() ?>assets/img/logo.png" alt="Porto Admin" />
 				</a>
 
 				<div class="panel card-sign">

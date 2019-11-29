@@ -6,7 +6,7 @@
 		<!-- Basic -->
 		<meta charset="UTF-8">
 
-		<title>PC BUILDER | User</title>
+		<title>Beta PC | User</title>
 		
 		
 		<meta name="description" content="Your PC our responsibility"/>
@@ -77,6 +77,18 @@
 			opacity: 0.5;
 			text-decoration: none;
 		}
+		</style>
+		<style type="text/css">
+    	.btn-disable
+        {
+			cursor: not-allowed;
+			pointer-events: none;
+
+			/*Button disabled - CSS color class*/
+			color: #c0c0c0;
+			background-color: #ffffff;
+
+        }
 		</style>
 	</head>
 	<body>
@@ -215,7 +227,7 @@
 									</div>
 									<div class="shopping-cart-btns">
 										<!-- <button class="main-btn">View Cart</button> -->
-										<button class="primary-btn <?php if($count ==0) echo 'isDisabled'; ?>" onclick="location.href='<?php echo $baseurl?>checkout'">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+										<button class="primary-btn <?php if($count ==0) echo 'btn-disable'; ?>" onclick="location.href='<?php echo $baseurl?>checkout'">Checkout <i class="fa fa-arrow-circle-right"></i></button>
 									</div>
 								</div>
 							</div>

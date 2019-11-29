@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>PC Builder: Your PC our responsibility</title>
+	<title>Beta PC: Your PC our responsibility</title>
 	
     <meta name="description" content="Your PC our responsibility"/>
     <meta name="keywords" content="Beta PC"/>
@@ -78,6 +78,18 @@
 			opacity: 0.5;
 			text-decoration: none;
 		}
+		</style>
+		<style type="text/css">
+    	.btn-disable
+        {
+			cursor: not-allowed;
+			pointer-events: none;
+
+			/*Button disabled - CSS color class*/
+			color: #c0c0c0;
+			background-color: #ffffff;
+
+        }
 		</style>
 </head>
 <body>

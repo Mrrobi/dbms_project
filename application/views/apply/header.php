@@ -6,7 +6,7 @@
 		<!-- Basic -->
 		<meta charset="UTF-8">
 
-		<title>PC BUILDER | Admin</title>
+		<title>Beta PC | Admin</title>
 		<meta name="description" content="Your PC our responsibility"/>
     <meta name="keywords" content="Beta PC"/>
     <meta name="author" content="Beta PC"/>

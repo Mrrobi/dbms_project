@@ -71,7 +71,7 @@
 								</tfoot>
 							</table>
 							<div class="pull-right">
-								<a class="primary-btn <?php if($count ==0) echo 'isDisabled'; ?>" onclick="location.href='<?php echo $baseurl?>requestssl/<?php echo $count;?>/check'">Place Order</a>
+								<a class="primary-btn <?php if($count ==0) echo 'btn-disable'; ?>" onclick="location.href='<?php echo $baseurl?>requestssl/<?php echo $count;?>/check'">Place Order</a>
 							</div>
 						</div>
 
