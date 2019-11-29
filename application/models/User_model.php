@@ -360,10 +360,19 @@ class User_model extends CI_Model {
     }
     public function cpu_update($data){
         $id = $this->session->userdata('p_id');
-        $this->db->where('id',$id);
-        $t = $this->db->update('cpu',$data);
-        if(isset($_SESSION['p_id'])){
-            unset($_SESSION['p_id']);
+        if($this->session->userdata('user')=='fb9b5f6706'){
+            $this->db->set('details',$data['details']);
+            $this->db->where('id',$id);
+            $t = $this->db->update('cpu');
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
+        }else{
+            $this->db->where('id',$id);
+            $t = $this->db->update('cpu',$data);
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
         }
         //echo $t;
         return $t;
@@ -375,12 +384,21 @@ class User_model extends CI_Model {
     }
     public function gpu_update($data){
         $id = $this->session->userdata('p_id');
-        $this->db->where('id',$id);
-        $t = $this->db->update('gpu',$data);
-        if(isset($_SESSION['p_id'])){
-            unset($_SESSION['p_id']);
+        $id = $this->session->userdata('p_id');
+        if($this->session->userdata('user')=='fb9b5f6706'){
+            $this->db->set('details',$data['details']);
+            $this->db->where('id',$id);
+            $t = $this->db->update('gpu');
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
+        }else{
+            $this->db->where('id',$id);
+            $t = $this->db->update('gpu',$data);
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
         }
-        //echo $t;
         return $t;
     }
     public function psu_in($data){
@@ -390,10 +408,20 @@ class User_model extends CI_Model {
     }
     public function psu_update($data){
         $id = $this->session->userdata('p_id');
-        $this->db->where('id',$id);
-        $t = $this->db->update('psu',$data);
-        if(isset($_SESSION['p_id'])){
-            unset($_SESSION['p_id']);
+        $id = $this->session->userdata('p_id');
+        if($this->session->userdata('user')=='fb9b5f6706'){
+            $this->db->set('details',$data['details']);
+            $this->db->where('id',$id);
+            $t = $this->db->update('psu');
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
+        }else{
+            $this->db->where('id',$id);
+            $t = $this->db->update('psu',$data);
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
         }
         //echo $t;
         return $t;
@@ -405,10 +433,20 @@ class User_model extends CI_Model {
     }
     public function ram_update($data){
         $id = $this->session->userdata('p_id');
-        $this->db->where('id',$id);
-        $t = $this->db->update('ram',$data);
-        if(isset($_SESSION['p_id'])){
-            unset($_SESSION['p_id']);
+        $id = $this->session->userdata('p_id');
+        if($this->session->userdata('user')=='fb9b5f6706'){
+            $this->db->set('details',$data['details']);
+            $this->db->where('id',$id);
+            $t = $this->db->update('ram');
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
+        }else{
+            $this->db->where('id',$id);
+            $t = $this->db->update('ram',$data);
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
         }
         //echo $t;
         return $t;
@@ -420,10 +458,20 @@ class User_model extends CI_Model {
     }
     public function hdd_update($data){
         $id = $this->session->userdata('p_id');
-        $this->db->where('id',$id);
-        $t = $this->db->update('hdd',$data);
-        if(isset($_SESSION['p_id'])){
-            unset($_SESSION['p_id']);
+        $id = $this->session->userdata('p_id');
+        if($this->session->userdata('user')=='fb9b5f6706'){
+            $this->db->set('details',$data['details']);
+            $this->db->where('id',$id);
+            $t = $this->db->update('hdd');
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
+        }else{
+            $this->db->where('id',$id);
+            $t = $this->db->update('hdd',$data);
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
         }
         //echo $t;
         return $t;
@@ -435,10 +483,20 @@ class User_model extends CI_Model {
     }
     public function ssd_update($data){
         $id = $this->session->userdata('p_id');
-        $this->db->where('id',$id);
-        $t = $this->db->update('ssd',$data);
-        if(isset($_SESSION['p_id'])){
-            unset($_SESSION['p_id']);
+        $id = $this->session->userdata('p_id');
+        if($this->session->userdata('user')=='fb9b5f6706'){
+            $this->db->set('details',$data['details']);
+            $this->db->where('id',$id);
+            $t = $this->db->update('ssd');
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
+        }else{
+            $this->db->where('id',$id);
+            $t = $this->db->update('ssd',$data);
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
         }
         //echo $t;
         return $t;
@@ -450,10 +508,20 @@ class User_model extends CI_Model {
     }
     public function mboard_update($data){
         $id = $this->session->userdata('p_id');
-        $this->db->where('id',$id);
-        $t = $this->db->update('motherboard',$data);
-        if(isset($_SESSION['p_id'])){
-            unset($_SESSION['p_id']);
+        $id = $this->session->userdata('p_id');
+        if($this->session->userdata('user')=='fb9b5f6706'){
+            $this->db->set('details',$data['details']);
+            $this->db->where('id',$id);
+            $t = $this->db->update('motherboard');
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
+        }else{
+            $this->db->where('id',$id);
+            $t = $this->db->update('motherboard',$data);
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
         }
         //echo $t;
         return $t;
@@ -465,10 +533,20 @@ class User_model extends CI_Model {
     }
     public function casing_update($data){
         $id = $this->session->userdata('p_id');
-        $this->db->where('id',$id);
-        $t = $this->db->update('casing',$data);
-        if(isset($_SESSION['p_id'])){
-            unset($_SESSION['p_id']);
+        $id = $this->session->userdata('p_id');
+        if($this->session->userdata('user')=='fb9b5f6706'){
+            $this->db->set('details',$data['details']);
+            $this->db->where('id',$id);
+            $t = $this->db->update('casing');
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
+        }else{
+            $this->db->where('id',$id);
+            $t = $this->db->update('casing',$data);
+            if(isset($_SESSION['p_id'])){
+                unset($_SESSION['p_id']);
+            }
         }
         //echo $t;
         return $t;
