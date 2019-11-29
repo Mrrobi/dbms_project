@@ -103,7 +103,7 @@
 										</div>
 									</div>
 								</div>
-								<button class="primary-btn">Submit</button>
+								<button class="primary-btn <?php if($this->session->userdata('logged_in')!=true) echo 'isDisabled' ?>">Submit</button>
 							</form>
 						</div>
 					</div>

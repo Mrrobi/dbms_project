@@ -53,7 +53,7 @@
 									<button type="submit" class="btn btn-primary mt-2">Sign In</button>
 								</div>
 							</div>
-
+							<?php echo $this->session->flashdata('msg'); ?>
 							<!-- <span class="mt-3 mb-3 line-thru text-center text-uppercase">
 								<span>or</span>
 							</span>

@@ -288,10 +288,12 @@ class Welcome extends CI_Controller {
 					}
 				}
 				else{
-					echo md5($this->input->POST('pass'));
+					$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Wrong Username/Password Please Try Again!!!</div>');
+					redirect(base_url().'logSign','refresh');
 				}
 			}else{
-				echo md5($this->input->POST('pass'));
+				$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Wrong Username/Password Please Try Again!!!</div>');
+				redirect(base_url().'logSign','refresh');
 			}
 		}
 	}
@@ -1458,8 +1460,8 @@ class Welcome extends CI_Controller {
 			$post_data['currency'] = "BDT";
 			$post_data['tran_id'] = uniqid()."_sslc";
 			$post_data['success_url'] = base_url()."validate/".$key;
-			$post_data['fail_url'] = base_url()."fail";
-			$post_data['cancel_url'] = base_url()."cancel";
+			$post_data['fail_url'] = base_url()."fail/".$key;
+			$post_data['cancel_url'] = base_url()."cancel/".$key;
 			# $post_data['multi_card_name'] = "mastercard,visacard,amexcard";  # DISABLE TO DISPLAY ALL AVAILABLE
 
 			# EMI INFO
@@ -1569,7 +1571,7 @@ class Welcome extends CI_Controller {
 			}
 		}
 	}
-	public function fail()
+	public function fail($key)
 	{
 		$database_order_status = 'FAILED'; // Check this from your database here Pending is dummy data,
 		if($database_order_status == 'FAILED')
@@ -1577,19 +1579,25 @@ class Welcome extends CI_Controller {
 			/*****************************************************************************
 			# Change your database status to FAILED & You can redirect to failed page from here
 			******************************************************************************/
-			echo "<pre>";
-			print_r($_POST);
-			echo "Transaction Faild";
+			if($key=='check'){
+				redirect(base_url()."checkout","refresh");
+			}else if($key=='list'){
+				redirect(base_url()."pcbuilder","refresh");
+			}
 		}
 		else
 		{
 			/******************************************************************
 			# Just redirect to your success page status already changed by IPN.
 			******************************************************************/
-			echo "Just redirect to your failed page";
+			if($key=='check'){
+				redirect(base_url()."checkout","refresh");
+			}else if($key=='list'){
+				redirect(base_url()."pcbuilder","refresh");
+			}
 		}	
 	}
-	public function cancel()
+	public function cancel($key)
 	{
 		$database_order_status = 'CANCELLED'; // Check this from your database here Pending is dummy data,
 		if($database_order_status == 'CANCELLED')

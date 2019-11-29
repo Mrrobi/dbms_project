@@ -60,8 +60,8 @@ $route['history'] = 'welcome/history';
 $route['ad'] = 'welcome/admin';
 $route['requestssl/(:any)/(:any)'] = 'welcome/requestssl/$1/$2';
 $route['validate/(:any)'] = 'welcome/validateresponse/$1';
-$route['fail'] = 'welcome/fail';
-$route['cancel'] = 'welcome/cancel';
+$route['fail/(:any)'] = 'welcome/fail/$1';
+$route['cancel/(:any)'] = 'welcome/cancel/$1';
 $route['ipn'] = 'welcome/ipn';
 
 $route['ad/cpu'] = 'welcome/ad_cpu';

@@ -384,7 +384,6 @@ class User_model extends CI_Model {
     }
     public function gpu_update($data){
         $id = $this->session->userdata('p_id');
-        $id = $this->session->userdata('p_id');
         if($this->session->userdata('user')=='fb9b5f6706'){
             $this->db->set('details',$data['details']);
             $this->db->where('id',$id);
@@ -407,7 +406,6 @@ class User_model extends CI_Model {
         return $t;
     }
     public function psu_update($data){
-        $id = $this->session->userdata('p_id');
         $id = $this->session->userdata('p_id');
         if($this->session->userdata('user')=='fb9b5f6706'){
             $this->db->set('details',$data['details']);
@@ -432,7 +430,7 @@ class User_model extends CI_Model {
         return $t;
     }
     public function ram_update($data){
-        $id = $this->session->userdata('p_id');
+
         $id = $this->session->userdata('p_id');
         if($this->session->userdata('user')=='fb9b5f6706'){
             $this->db->set('details',$data['details']);
@@ -458,7 +456,6 @@ class User_model extends CI_Model {
     }
     public function hdd_update($data){
         $id = $this->session->userdata('p_id');
-        $id = $this->session->userdata('p_id');
         if($this->session->userdata('user')=='fb9b5f6706'){
             $this->db->set('details',$data['details']);
             $this->db->where('id',$id);
@@ -482,7 +479,6 @@ class User_model extends CI_Model {
         return $t;
     }
     public function ssd_update($data){
-        $id = $this->session->userdata('p_id');
         $id = $this->session->userdata('p_id');
         if($this->session->userdata('user')=='fb9b5f6706'){
             $this->db->set('details',$data['details']);
@@ -508,7 +504,6 @@ class User_model extends CI_Model {
     }
     public function mboard_update($data){
         $id = $this->session->userdata('p_id');
-        $id = $this->session->userdata('p_id');
         if($this->session->userdata('user')=='fb9b5f6706'){
             $this->db->set('details',$data['details']);
             $this->db->where('id',$id);
@@ -532,7 +527,6 @@ class User_model extends CI_Model {
         return $t;
     }
     public function casing_update($data){
-        $id = $this->session->userdata('p_id');
         $id = $this->session->userdata('p_id');
         if($this->session->userdata('user')=='fb9b5f6706'){
             $this->db->set('details',$data['details']);
