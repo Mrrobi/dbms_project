@@ -23,15 +23,23 @@ body {
 }
 
 a {
-	color: #CCC;
+	color: rgb(245, 132, 3);
 }
-
+.card-a{
+	color: rgb(245, 132, 3);
+	font-family: "Open Sans", Arial, sans-serif;
+}
+.card-a:hover,.card-a:focus{
+	color: #f85307;
+	font-family: "Open Sans", Arial, sans-serif;
+	font-weight: bold;
+}
 a:hover, a:focus {
-	color: #d9d9d9;
+	color: #f85307;
 }
 
 a:active {
-	color: #bfbfbf;
+	color: #f35f09;
 }
 
 /* Layout Base - Main Wrapper	*/
@@ -5744,26 +5752,26 @@ html.sidebar-light:not(.dark) ul.nav-main li .nav-children li a:hover, html.side
 
 /* Colors */
 .btn-primary {
-	background-color: #CCC;
+	background-color: #f25b15;
 	border-color: #CCC #CCC #b3b3b3;
 	color: #FFF;
 }
 
 .btn-primary:hover, .btn-primary.hover {
-	background-color: #dfdfdf;
+	background-color:#f1860c;
 	border-color: #e6e6e6 #e6e6e6 #CCC;
 	color: #FFF;
 }
 
 .btn-primary:focus, .btn-primary.focus {
-	-webkit-box-shadow: 0 0 0 3px rgba(204, 204, 204, 0.5);
-	        box-shadow: 0 0 0 3px rgba(204, 204, 204, 0.5);
+	-webkit-box-shadow: 0 0 0 3px rgba(34, 211, 255, 0.5);
+	        box-shadow: 0 0 0 3px rgba(61, 228, 205, 0.5);
 	color: #FFF;
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
-	background-color: #CCC;
-	border-color: #CCC #CCC #b3b3b3;
+	background-color:#f25b15;
+	border-color: rgb(7, 232, 248) rgb(10, 222, 250) #03cdff;
 }
 
 .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
@@ -6302,7 +6310,7 @@ html:not(.sidebar-left-collapsed).boxed .call-to-action .call-to-action-btn > sp
 }
 
 .card-title {
-	color: #33353F;
+	color: rgb(0, 225, 255);
 	font-size: 20px;
 	font-weight: 400;
 	line-height: 20px;
@@ -17738,7 +17746,7 @@ html.dark .search-content .search-results-list a:hover {
 }
 
 .body-sign .card-sign .card-title-sign .title {
-	background-color: #CCC;
+	background-color: #f25b15;
 	border-radius: 5px 5px 0 0;
 	color: #FFF;
 	display: inline-block;
@@ -17750,7 +17758,7 @@ html.dark .search-content .search-results-list a:hover {
 
 .body-sign .card-sign .card-body {
 	background: #FFF;
-	border-top: 5px solid #CCC;
+	border-top: 5px solid #f25b15;
 	border-radius: 5px 0 5px 5px;
 	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 	        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);

@@ -76,10 +76,10 @@
                         <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
                         <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
                         <?php if($this->session->userdata('role')=='0') { ?>
-                            <?php if($p->quantity!=0){?>
+                            <?php if($p->quantity>0){?>
 									<button class="primary-btn add-to-cart" onclick="location.href='<?php echo base_url()?>cart/<?php echo $pagename?>/<?php echo $p->ID ?>'"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 								<?php }else{?>
-									<button class="primary-btn add-to-cart isDisabled" onclick="location.href='<?php echo base_url()?>cart/<?php echo $pagename?>/<?php echo $p->ID ?>'"><i class="far fa-frown"></i> Sold Out</button>
+									<button class="primary-btn add-to-cart isDisabled" onclick="location.href='<?php echo base_url()?>cart/<?php echo $pagename?>/<?php echo $p->ID ?>'"><i class="far fa-frown"></i> Stock Out</button>
 								<?php } ?>
                         <?php } ?>
                     </div>

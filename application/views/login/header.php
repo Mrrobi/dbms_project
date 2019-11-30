@@ -45,7 +45,8 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
 
 		<!-- Vendor CSS -->
-		<link rel="stylesheet" href="<?php echo base_url() ?>dash/vendor/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+		
 		<link rel="stylesheet" href="<?php echo base_url() ?>dash/vendor/animate/animate.css">
 
 		<link rel="stylesheet" href="<?php echo base_url() ?>dash/vendor/font-awesome/css/all.min.css" />
@@ -59,6 +60,8 @@
 		<link rel="stylesheet" href="<?php echo base_url() ?>dash/css/custom.css">
 
 		<!-- Head Libs -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 		<script src="<?php echo base_url() ?>dash/vendor/modernizr/modernizr.js"></script>		
 		<script src="<?php echo base_url() ?>dash/master/style-switcher/style.switcher.localstorage.js"></script>
 		<script src="https://kit.fontawesome.com/d6062a4230.js" crossorigin="anonymous"></script>

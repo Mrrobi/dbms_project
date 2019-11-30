@@ -16,7 +16,7 @@
 					<div class="card-body">
 						<form action="<?php echo base_url()?>welcome/auth" method="post">
 							<div class="form-group mb-3">
-								<label>Username</label>
+								<label>Email</label>
 								<div class="input-group">
 									<input name="email" type="text" class="form-control form-control-lg" />
 									<span class="input-group-append">
@@ -63,7 +63,7 @@
 								<a class="btn btn-twitter mb-3 ml-1 mr-1" href="#">Connect with <i class="fab fa-twitter"></i></a>
 							</div> -->
 
-							<p class="text-center">Don't have an account yet? <a href="<?php echo base_url()?>welcome/regi">Sign Up</a></p>
+							<p class="text-center">Don't have an account yet? <a class="card-a" href="<?php echo base_url()?>welcome/regi">Sign Up</a></p>
 
 						</form>
 						<?php echo $this->session->flashdata('msg'); ?>

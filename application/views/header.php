@@ -86,10 +86,50 @@
 			background-color: #ffffff;
 
         }
+        /* #loading
+        {
+            background:#000 url(images/loader.gif) no-repeat center center;
+            height: 100px;
+            width: 100px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            margin: -25px 0 0 -25px;
+        } */
+
 		</style>
+
+        <!-- <style>
+            #dvLoading {
+            background:url(http://loadinggif.com/images/image-selection/36.gif) no-repeat center center;
+            height: 100px;
+            width: 100px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin: -25px 0 0 -25px;
+            z-index: 1000;
+            }
+        </style>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+        <script>
+            $(document).ready(function() {
+                var iSrc = "http://2.bp.blogspot.com/-Us15MaCuNjg/T88jIdQzGUI/AAAAAAAACbE/MDNj13OmjiI/s1600/Demo.jpg";
+                var rndNum = Math.random();
+                iSrc = iSrc + "?q=" + rndNum;
+                $('img').attr('src', iSrc);
+            });
+
+            $(window).bind("load", function() {
+                $('#dvLoading').fadeOut(2000);
+            });
+        </script> -->
 </head>
 
 <body>
+<!-- <div id="dvLoading"></div> -->
     <!-- HEADER -->
     <header>
         <!-- top Header -->

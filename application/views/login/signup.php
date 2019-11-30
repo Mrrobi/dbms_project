@@ -65,7 +65,7 @@
 								<?php echo $this->session->flashdata('msg'); ?>
 							</div>
 
-							<p class="text-center">Already have an account? <a href="<?php echo base_url() ?>welcome/logSign">Sign In!</a></p>
+							<p class="text-center">Already have an account? <a class="card-a" href="<?php echo base_url() ?>welcome/logSign">Sign In!</a></p>
 					</div>
 				</div>
 

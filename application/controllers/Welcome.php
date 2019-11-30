@@ -71,8 +71,8 @@ class Welcome extends CI_Controller {
 
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('fname', 'First Name', 'trim|required|alpha|min_length[3]|max_length[30]');
-		$this->form_validation->set_rules('lname', 'Last Name', 'trim|required|alpha|min_length[3]|max_length[30]');
+		$this->form_validation->set_rules('fname', 'First Name', 'trim|required|alpha_numeric_spaces|min_length[1]|max_length[30]');
+		$this->form_validation->set_rules('lname', 'Last Name', 'trim|required|alpha_numeric_spaces|min_length[1]|max_length[30]');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
@@ -87,8 +87,8 @@ class Welcome extends CI_Controller {
 		}
 		else
 		{
-			// echo 'success';
-			$this->data = array(    //$data is a global variable
+		    
+		    $this->data = array(    //$data is a global variable
 			'user_name' => md5($_POST['email']),
 			'first_name' => $_POST['fname'],
 			'last_name' => $_POST['lname'],
@@ -96,8 +96,14 @@ class Welcome extends CI_Controller {
 			'password' => md5($_POST['password']),
 			'hash' => md5(rand(0, 1000))
 			);
+		    if($this->send_confirmation()){
+			// echo 'success';
+			
 			$this->User_model->insert_record($this->data);
-			$this->send_confirmation();
+			redirect(base_url().'welcome/regi');
+		    }else{
+		        $this->load->view('login/signup',$data);
+		    }
 		}
 
 
@@ -156,11 +162,25 @@ class Welcome extends CI_Controller {
 		
 	}
 
+
+	public function profile(){
+		$data['baseurl'] = $this->config->item('base_url');
+		$data['cart'] = $this->User_model->getCart();
+		$data['header'] = $this->load->view('user/header', $data, TRUE);
+		$data['footer'] = $this->load->view('user/footer', $data, TRUE);
+		
+		$this->load->view('user/profile',$data);
+
+
+
+	}
+
 	function send_confirmation() {
-		$this->load->library('email');  	//load email library
+        // Load email library and passing configured values to email library
+        $this->load->library('email');
 		$this->email->from('robi@mrrobi.tech', 'Beta Pc'); //sender's email
 		$address = $_POST['email'];	//receiver's email
-		$subject="Welcome to Beta Pc!";	//subject
+		$subject="Beta Pc Account Verification.";	//subject
 		$message= /*-----------email body starts-----------*/
 		  'Thanks for signing up, '.$_POST['fname'].'!
 		
@@ -175,22 +195,281 @@ class Welcome extends CI_Controller {
 			  
 		  ' . base_url() . 'welcome/verify?' . 
 		  'email=' . $_POST['email'] . '&hash=' . $this->data['hash'] ;
+
+		  $link ="\"".base_url() . 'welcome/verify?' . 
+		  'email=' . $_POST['email'] . '&hash=' . $this->data['hash']."\"";
+
 		  /*-----------email body ends-----------*/		      
-		$this->email->to($address);
+		$body = '
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Verify your email address</title>
+		<style type="text/css" rel="stylesheet" media="all">
+			/* Base ------------------------------ */
+			*:not(br):not(tr):not(html) {
+			font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			}
+			body {
+			width: 100% !important;
+			height: 100%;
+			margin: 0;
+			line-height: 1.4;
+			background-color: #F5F7F9;
+			color: #839197;
+			-webkit-text-size-adjust: none;
+			}
+			a {
+			color: #414EF9;
+			}
+			/* Layout ------------------------------ */
+			.email-wrapper {
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			background-color: #F5F7F9;
+			}
+			.email-content {
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			}
+			/* Masthead ----------------------- */
+			.email-masthead {
+			padding: 25px 0;
+			text-align: center;
+			}
+			.email-masthead_logo {
+			max-width: 400px;
+			border: 0;
+			}
+			.email-masthead_name {
+			font-size: 16px;
+			font-weight: bold;
+			color: #839197;
+			text-decoration: none;
+			text-shadow: 0 1px 0 white;
+			}
+			/* Body ------------------------------ */
+			.email-body {
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			border-top: 1px solid #E7EAEC;
+			border-bottom: 1px solid #E7EAEC;
+			background-color: #FFFFFF;
+			}
+			.email-body_inner {
+			width: 570px;
+			margin: 0 auto;
+			padding: 0;
+			}
+			.email-footer {
+			width: 570px;
+			margin: 0 auto;
+			padding: 0;
+			text-align: center;
+			}
+			.email-footer p {
+			color: #839197;
+			}
+			.body-action {
+			width: 100%;
+			margin: 30px auto;
+			padding: 0;
+			text-align: center;
+			}
+			.body-sub {
+			margin-top: 25px;
+			padding-top: 25px;
+			border-top: 1px solid #E7EAEC;
+			}
+			.content-cell {
+			padding: 35px;
+			}
+			.align-right {
+			text-align: right;
+			}
+			/* Type ------------------------------ */
+			h1 {
+			margin-top: 0;
+			color: #292E31;
+			font-size: 19px;
+			font-weight: bold;
+			text-align: left;
+			}
+			h2 {
+			margin-top: 0;
+			color: #292E31;
+			font-size: 16px;
+			font-weight: bold;
+			text-align: left;
+			}
+			h3 {
+			margin-top: 0;
+			color: #292E31;
+			font-size: 14px;
+			font-weight: bold;
+			text-align: left;
+			}
+			p {
+			margin-top: 0;
+			color: #839197;
+			font-size: 16px;
+			line-height: 1.5em;
+			text-align: left;
+			}
+			p.sub {
+			font-size: 12px;
+			}
+			p.center {
+			text-align: center;
+			}
+			/* Buttons ------------------------------ */
+			.button {
+			display: inline-block;
+			width: 200px;
+			background-color: #414EF9;
+			border-radius: 3px;
+			color: #ffffff;
+			font-size: 15px;
+			line-height: 45px;
+			text-align: center;
+			text-decoration: none;
+			-webkit-text-size-adjust: none;
+			mso-hide: all;
+			}
+			.button--green {
+			background-color: #28DB67;
+			}
+			.button--red {
+			background-color: #FF3665;
+			}
+			.button-blue {
+				display: inline-block;
+				width: 200px;
+				background-color: #414EF9;
+				border-radius: 3px;
+				color: #ffffff;
+				font-size: 15px;
+				line-height: 45px;
+				text-align: center;
+				text-decoration: none;
+				-webkit-text-size-adjust: none;
+				mso-hide: all;
+			}
+			/*Media Queries ------------------------------ */
+			@media only screen and (max-width: 600px) {
+			.email-body_inner,
+			.email-footer {
+				width: 100% !important;
+			}
+			}
+			@media only screen and (max-width: 500px) {
+			.button {
+				width: 100% !important;
+			}
+			}
+		</style>
+		</head>
+		<body>
+		<table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0">
+			<tr>
+			<td align="center">
+				<table class="email-content" width="100%" cellpadding="0" cellspacing="0">
+				<!-- Logo -->
+				
+				<!--/Logo -->
+				<tr>
+					<td class="email-masthead">
+					<a href="https://mrrobi.tech/">
+					<img src="https://mrrobi.tech/assets/img/logo.png" alt="Porto Admin" />
+					</a>
+					</td>
+				</tr>
+				<!-- Email Body -->
+				<tr>
+					<td class="email-body" width="100%">
+					<table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0">
+						<!-- Body content -->
+						<tr>
+						<td class="content-cell">
+							<h1>Verify your email address</h1>
+							<p>Thanks for signing up for Beta!'."We're excited to have you as an early user.</p>
+							<!-- Action -->".'
+							<table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
+							<tr>
+								<td align="center">
+								<div>
+									<!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href='.$link.' style="height:45px;v-text-anchor:middle;width:200px;" arcsize="7%" stroke="f" fill="t">
+									<v:fill type="tile" color="#414EF9" />
+									<w:anchorlock/>
+									<center style="color:#ffffff;font-family:sans-serif;font-size:15px;">Verify Email</center>
+								</v:roundrect><![endif]-->
+								<a href = '.$link.' ><button class="button-blue">Verify Email</button></a>
+								</div>
+								</td>
+							</tr>
+							</table>
+							<p>Thanks,<br>The Beta PC Team</p>
+							<!-- Sub copy -->
+							<table class="body-sub">
+							<tr>
+								<td>
+								<p class="sub">If you’re having trouble clicking the button, copy and paste the URL below into your web browser.
+								</p>
+								<p class="sub"><a href="' . base_url() . 'welcome/verify?' . 
+								'email=' . $_POST['email'] . '&hash=' . $this->data['hash'] .'">' . base_url() . 'welcome/verify?' . 
+								'email=' . $_POST['email'] . '&hash=' . $this->data['hash'] .'</a></p>
+								</td>
+							</tr>
+							</table>
+						</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0">
+						<tr>
+						<td class="content-cell">
+							<p class="sub center">
+							Beta PC <br>
+							Your PC our responsiblity.
+							</p>
+						</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+			</tr>
+		</table>
+		</body>
+		</html>
+		"';
+		
+		  $this->email->to($address);
 		$this->email->subject($subject);
-		$this->email->message($message);
+		$this->email->message($body);
 		
 		if ($this->email->send())
 			{
 				// successfully sent mail
 				$this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully Registered! Please confirm the mail sent to your Email-ID!!!</div>');
-				redirect(base_url().'welcome/regi');
+				return true;
 			}
 			else
 			{
 				// error
 				$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
-				redirect(base_url().'welcome/regi');
+				return false;
 			}
 			
 		// echo 'email send';

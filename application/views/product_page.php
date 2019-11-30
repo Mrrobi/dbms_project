@@ -87,7 +87,6 @@ $this->db->update($pagename);
 						<div class="product-body">
 							<div class="product-label">
 								<span>New</span>
-								<span class="sale">-20%</span>
 							</div>
 							<h2 class="product-name"><?php echo $p->name ?></h2>
 							<h3 class="product-price"><?php echo $p->price.'TK' ?> <del class="product-old-price"></del></h3>
@@ -105,17 +104,17 @@ $this->db->update($pagename);
 								</div>
 								<a href="<?php echo base_url()?>review/<?php echo $p->ID.'/'.$pagename ?>"><?php echo $count; ?> Review(s) / Add Review</a>
 							</div>
-							<p><strong>Availability:</strong> <?php echo $p->quantity.' Left' ?></p>
+							<!--<p><strong>Availability:</strong> <?php echo $p->quantity.' Left' ?></p>-->
 							<p><strong>Brand:</strong> <?php echo $p->brand ?></p>
 							
 
 							<div class="product-btns">
                                 
 							<?php if($this->session->userdata('role')=='0') { ?>
-								<?php if($p->quantity!=0){?>
+								<?php if($p->quantity>0){?>
 									<button class="primary-btn add-to-cart" onclick="location.href='<?php echo base_url()?>cart/<?php echo $pagename?>/<?php echo $p->ID ?>'"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 								<?php }else{?>
-									<button class="primary-btn add-to-cart isDisabled" onclick="location.href='<?php echo base_url()?>cart/<?php echo $pagename?>/<?php echo $p->ID ?>'"><i class="far fa-frown"></i> Sold Out</button>
+									<button class="primary-btn add-to-cart isDisabled" onclick="location.href='<?php echo base_url()?>cart/<?php echo $pagename?>/<?php echo $p->ID ?>'"><i class="far fa-frown"></i> Stock Out</button>
 								<?php } ?>
                         	<?php } ?>
 							</div>
