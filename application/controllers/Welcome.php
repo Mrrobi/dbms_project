@@ -25,7 +25,7 @@ class Welcome extends CI_Controller {
         $this->load->model('User_model');
         //$this->load->helper('file');
         $this->load->helper('url','sslc');
-    	 $this->load->library('email');
+    	//  $this->load->library('email');
         //$this->load->helper('url_helper');
 	}
 
@@ -178,6 +178,15 @@ class Welcome extends CI_Controller {
 	function send_confirmation() {
         // Load email library and passing configured values to email library
         $this->load->library('email');
+		$this->load->library('email');
+		$config = array();
+		$config['protocol'] = 'smtp';
+		$config['smtp_host'] = 'smtp.google.com';
+		$config['smtp_user'] = 'ml@softwrd.ai';
+		$config['smtp_pass'] = '';
+		$config['smtp_port'] = 465;
+		$this->email->initialize($config);
+		$this->email->set_newline("\r\n");
 		$this->email->from('robi@mrrobi.tech', 'Beta Pc'); //sender's email
 		$address = $_POST['email'];	//receiver's email
 		$subject="Beta Pc Account Verification.";	//subject
