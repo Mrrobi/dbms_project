@@ -580,7 +580,7 @@ class User_model extends CI_Model {
 		$config['smtp_host'] = 'mail.mrrobi.tech'; //smtp host name
 		$config['smtp_port'] = '465'; //smtp port number
 		$config['smtp_user'] = $from_email;
-		$config['smtp_pass'] = 'joya171023&love'; //$from_email password
+		$config['smtp_pass'] = ''; //$from_email password
 		$config['mailtype'] = 'html';
 		$config['charset'] = 'iso-8859-1';
 		$config['wordwrap'] = TRUE;
